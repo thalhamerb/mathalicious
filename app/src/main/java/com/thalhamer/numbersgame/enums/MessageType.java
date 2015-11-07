@@ -1,0 +1,1 @@
+package com.thalhamer.numbersgame.enums;/** * Created by Brian on 7/2/2015. */public enum MessageType {    POSITIVE, NEGATIVE, NORMAL;}

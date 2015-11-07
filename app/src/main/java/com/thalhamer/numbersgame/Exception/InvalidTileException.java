@@ -1,0 +1,1 @@
+package com.thalhamer.numbersgame.Exception;/** * Created by Brian on 5/2/2015. */public class InvalidTileException extends Exception {    public InvalidTileException(String message) {        super(message);    }    public InvalidTileException(String message, Exception e) {        super(message, e);    }}

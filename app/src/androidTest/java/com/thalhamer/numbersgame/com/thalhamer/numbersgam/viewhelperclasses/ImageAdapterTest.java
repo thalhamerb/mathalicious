@@ -1,0 +1,1 @@
+package com.thalhamer.numbersgame.com.thalhamer.numbersgam.viewhelperclasses;import android.test.suitebuilder.annotation.SmallTest;import junit.framework.TestCase;/** * Created by Brian on 1/3/2015. */public class ImageAdapterTest extends TestCase {    @SmallTest    public void populateTiles() {//        adapter.populateTiles();    }}

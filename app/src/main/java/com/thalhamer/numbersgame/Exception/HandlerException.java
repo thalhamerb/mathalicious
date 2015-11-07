@@ -1,0 +1,1 @@
+package com.thalhamer.numbersgame.Exception;/** * Created by Brian on 5/26/2015. */public class HandlerException extends Exception {    public HandlerException(String message) {        super(message);    }    public HandlerException(String message, Exception e) {        super(message, e);    }}

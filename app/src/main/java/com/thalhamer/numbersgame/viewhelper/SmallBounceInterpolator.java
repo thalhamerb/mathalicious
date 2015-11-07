@@ -1,0 +1,1 @@
+package com.thalhamer.numbersgame.viewhelper;import android.view.animation.Interpolator;/** * Created by Brian on 7/2/2015. */public class SmallBounceInterpolator implements Interpolator {    @Override    public float getInterpolation(float t) {        return (t - t * t);    }}
