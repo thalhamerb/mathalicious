@@ -16,9 +16,11 @@ import android.widget.TextView;
 import com.google.common.collect.Lists;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.GameDataHolder;
+import com.thalhamer.numbersgame.domain.GridData;
 import com.thalhamer.numbersgame.enums.CalcType;
 import com.thalhamer.numbersgame.enums.ScoreType;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
+import com.thalhamer.numbersgame.viewhelper.TouchStateHolder;
 
 import java.util.List;
 
@@ -77,8 +79,9 @@ public class GameExplanationPopupService extends AbstractPopupService {
                         SoundEnum.CLICK1.getMediaPlayer().start();
                         if (gameDataHolder != null) {
                             gameDataHolder.setPopupScreenOpen(false);
+                            TouchStateHolder.setTouchState(GridData.TouchState.ENABLED);
                             Log.d("Popupservice", "resumeGame - createGameExplanationpopup");
-                            gameDataHolder.getGameActivity().resumeGame();
+                            gameDataHolder.getGameActivity().startGame();
                         }
                         popupWindow.dismiss();
                     }
