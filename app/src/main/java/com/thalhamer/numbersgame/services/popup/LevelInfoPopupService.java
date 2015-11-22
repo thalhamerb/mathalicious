@@ -44,12 +44,15 @@ import javax.inject.Singleton;
 @Singleton
 public class LevelInfoPopupService extends AbstractPopupService {
 
-    private SavedDataService savedDataService = new SavedDataService();
-    private JsonService jsonService = new JsonService();
-    GridTileDataService gridTileDataService = new GridTileDataService();
-    AdvertisementService advertisementService = new AdvertisementService();
+    @Inject
+    SavedDataService savedDataService;
+    @Inject
+    JsonService jsonService;
+    @Inject
+    GridTileDataService gridTileDataService;
+    @Inject
+    AdvertisementService advertisementService;
 
-    @Inject //so works with app module
     public LevelInfoPopupService() {
     }
 
