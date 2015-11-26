@@ -12,15 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
 import com.thalhamer.numbersgame.Activity.GameActivity;
-import com.thalhamer.numbersgame.Factory.App;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.LevelData;
 import com.thalhamer.numbersgame.domain.StarsInfo;
 import com.thalhamer.numbersgame.enums.ScoreType;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
-import com.thalhamer.numbersgame.services.AdvertisementService;
 import com.thalhamer.numbersgame.services.GridTileDataService;
 import com.thalhamer.numbersgame.services.JsonService;
 import com.thalhamer.numbersgame.services.SavedDataService;
@@ -50,8 +47,6 @@ public class LevelInfoPopupService extends AbstractPopupService {
     JsonService jsonService;
     @Inject
     GridTileDataService gridTileDataService;
-    @Inject
-    AdvertisementService advertisementService;
 
     public LevelInfoPopupService() {
     }
@@ -131,7 +126,7 @@ public class LevelInfoPopupService extends AbstractPopupService {
                 @Override
                 public void onClick(View v) {
                     SoundEnum.CLICK1.getMediaPlayer().start();
-                    loadAdvertisementAndStartGameActivity(activity, levelData);
+                    startGameActivity(activity, levelData);
                 }
             });
         }
@@ -149,28 +144,6 @@ public class LevelInfoPopupService extends AbstractPopupService {
         return popupWindow;
     }
 
-    private void loadAdvertisementAndStartGameActivity(final Activity activity, final LevelData levelData) {
-        if (App.getmInterstitialAd().isLoaded()) {
-            App.getmInterstitialAd().setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            advertisementService.requestNewInterstitialAd();
-                            startGameActivity(activity, levelData);
-                        }
-                    });
-                }
-            });
-
-            App.getmInterstitialAd().show();
-
-        } else {
-            advertisementService.requestNewInterstitialAd();
-            startGameActivity(activity, levelData);
-        }
-    }
 
     private void startGameActivity(Activity activity, LevelData levelData) {
         Intent intent = new Intent(activity, GameActivity.class);

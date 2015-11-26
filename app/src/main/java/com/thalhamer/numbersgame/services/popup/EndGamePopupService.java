@@ -26,6 +26,7 @@ import com.thalhamer.numbersgame.enums.MessageType;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
 import com.thalhamer.numbersgame.services.GridTileDataService;
 import com.thalhamer.numbersgame.services.MessageService;
+import com.thalhamer.numbersgame.services.SoundService;
 import com.thalhamer.numbersgame.services.StarsAndUnlockService;
 
 import java.util.Map;
@@ -49,6 +50,8 @@ public class EndGamePopupService extends AbstractPopupService {
     StarsAndUnlockService starsAndUnlockService;
     @Inject
     MessageService messageService;
+    @Inject
+    SoundService soundService;
 
     GridTileDataService gridTileDataService = new GridTileDataService();
 
@@ -60,6 +63,10 @@ public class EndGamePopupService extends AbstractPopupService {
         setExtraTasks(activity, popupView, levelInfo);
         createPopupWindow(popupView, currentView, activity, true);
         createEndGameThoughtBubbleAndButtons(popupView, numOfStars, activity);
+
+        if (numOfStars == 3) {
+            soundService.playSound(R.raw.oh_yea);
+        }
     }
 
     private void setExtraTasks(Activity activity, View popupView, LevelInfo levelInfo) {
