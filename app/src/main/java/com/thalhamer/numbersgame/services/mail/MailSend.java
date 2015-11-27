@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
 /**
  * Gmail sender
  */
-public class MailSender extends javax.mail.Authenticator {
+public class MailSend extends javax.mail.Authenticator {
     private String mailhost = "smtp.gmail.com";
     private String user;
     private String password;
@@ -31,7 +31,7 @@ public class MailSender extends javax.mail.Authenticator {
         Security.addProvider(new com.thalhamer.numbersgame.services.mail.JSSEProvider());
     }
 
-    public MailSender(String user, String password) {
+    public MailSend(String user, String password) {
         this.user = user;
         this.password = password;
 
