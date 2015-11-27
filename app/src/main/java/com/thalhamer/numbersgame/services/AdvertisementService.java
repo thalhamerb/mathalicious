@@ -41,6 +41,7 @@ public class AdvertisementService {
     }
 
     public void requestNewInterstitialAd() {
+        initInterstitialAd();
         //TODO switch out test ones when ready to deploy
         if (!App.getmInterstitialAd().isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()

@@ -122,7 +122,7 @@ public class GridMappingDiagonalService {
                 if (diagTile != null) {
                     performMoveDiagonal(diagTile, currentCol, diagonalTiles, currTile, originalTile, gridMappingService);
                 } else {
-                    gridMappingService.checkForDiagonalMove(currentCol);
+//                    gridMappingService.checkForDiagonalMove(currentCol);
                 }
             }
         });
