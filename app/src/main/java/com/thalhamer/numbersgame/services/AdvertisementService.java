@@ -30,6 +30,7 @@ public class AdvertisementService {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
                 .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")  // My test phone
                 .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")
+                .addTestDevice("AF2BE04100A2E6AA655D6095FBC108E5")
                 .build();
         mAdView.loadAd(adRequest);
     }
@@ -49,6 +50,7 @@ public class AdvertisementService {
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
                     .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")
                     .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")  // My test phone
+                    .addTestDevice("AF2BE04100A2E6AA655D6095FBC108E5")
                     .build();
 
             App.getmInterstitialAd().loadAd(adRequest);
