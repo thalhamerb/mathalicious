@@ -17,8 +17,7 @@ import com.google.common.collect.Lists;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.GameDataHolder;
 import com.thalhamer.numbersgame.domain.GridData;
-import com.thalhamer.numbersgame.enums.CalcType;
-import com.thalhamer.numbersgame.enums.ScoreType;
+import com.thalhamer.numbersgame.enums.GameExplanation;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
 import com.thalhamer.numbersgame.viewhelper.TouchStateHolder;
 
@@ -38,7 +37,7 @@ public class GameExplanationPopupService extends AbstractPopupService {
     @Inject
     GameDataHolder gameDataHolder;
 
-    public PopupWindow createGameExplanationPopup(Activity activity, ViewGroup currentView, List<Object> enums) {
+    public PopupWindow createGameExplanationPopup(Activity activity, ViewGroup currentView, List<GameExplanation> enums) {
         FrameLayout popupLayout = (FrameLayout) activity.getLayoutInflater().inflate(R.layout.popup_game_explanation,
                 currentView, false);
         List<View> views = createViews(activity, enums, popupLayout);
@@ -91,23 +90,17 @@ public class GameExplanationPopupService extends AbstractPopupService {
     }
 
     @NonNull
-    private List<View> createViews(Activity activity, List<Object> enums, FrameLayout popupLayout) {
+    private List<View> createViews(Activity activity, List<GameExplanation> enums, FrameLayout popupLayout) {
         final List<View> gameExplanationViews = Lists.newArrayList();
-        for (Object enumObject : enums) {
+        for (GameExplanation enumObject : enums) {
             final View enumView = activity.getLayoutInflater().inflate(R.layout.game_explanation, popupLayout, false);
             TextView title = (TextView) enumView.findViewById(R.id.title);
             TextView description = (TextView) enumView.findViewById(R.id.description);
             ImageView imageView = (ImageView) enumView.findViewById(R.id.image);
 
-            if (enumObject instanceof CalcType) {
-                title.setText("Operation");
-                description.setText(((CalcType) enumObject).getDescription());
-                imageView.setImageResource(((CalcType) enumObject).getExplanationId());
-            } else if (enumObject instanceof ScoreType) {
-                title.setText("Score");
-                description.setText(((ScoreType) enumObject).getFullGameDescription());
-                imageView.setImageResource(((ScoreType) enumObject).getExplanationId());
-            }
+            title.setText(enumObject.getGameExplanationTitle());
+            description.setText(enumObject.getDescription());
+            imageView.setImageResource(enumObject.getExplanationId());
 
             popupLayout.addView(enumView);
             gameExplanationViews.add(enumView);

@@ -29,6 +29,7 @@ public class AdvertisementService {
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
                 .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")  // My test phone
+                .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")
                 .build();
         mAdView.loadAd(adRequest);
     }
@@ -46,7 +47,8 @@ public class AdvertisementService {
         if (!App.getmInterstitialAd().isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
-                    .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")  // My Galaxy Nexus test phone
+                    .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")
+                    .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")  // My test phone
                     .build();
 
             App.getmInterstitialAd().loadAd(adRequest);
