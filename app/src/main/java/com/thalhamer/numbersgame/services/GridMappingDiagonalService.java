@@ -104,7 +104,7 @@ public class GridMappingDiagonalService {
                 for (int i = originalTile.getRowNum(); i < currentCol.size(); i++) {
                     float extraVertShift = 0;
                     if (currentCol.get(i).getImage().isNewImage()) {
-                        extraVertShift = gridMappingService.getTopOfGrid(gameDataHolder.getGamePanel());
+                        extraVertShift = gridMappingService.getTopOfGrid();
                         currentCol.get(i).getImage().setNewImage(false);
                     }
                     RectF vertRectF = currentCol.get(i).getImage().getRectF();

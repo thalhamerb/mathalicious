@@ -49,12 +49,12 @@ public class SpecialTileService {
         animator.setDuration(OPEN_LEPRECHAUN_TIME);
         animator.setInterpolator(new AccelerateInterpolator());
         MainGamePanel gamePanel = gameDataHolder.getGamePanel();
-        float topOfGrid = gridMappingService.getTopOfGrid(gamePanel);
-        final float vertCenter = topOfGrid + gridMappingService.getGridHeight(gamePanel) / 2;
+        float topOfGrid = gridMappingService.getTopOfGrid();
+        final float vertCenter = topOfGrid + gridMappingService.getGridHeight() / 2;
         final float horizCenter = gamePanel.getWidth() / 2;
         leprechaunRectF = new RectF(horizCenter, vertCenter, horizCenter, vertCenter);
 
-        final float halfMaxHeight = (gridMappingService.getGridHeight(gamePanel) * 0.7f) / 2;
+        final float halfMaxHeight = (gridMappingService.getGridHeight() * 0.7f) / 2;
         final float halfMaxWidth = (gamePanel.getWidth() * 0.7f) / 2;
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
