@@ -3,18 +3,18 @@ package com.thalhamer.numbersgame.services.popup;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.google.common.collect.Lists;
-import com.thalhamer.numbersgame.Activity.GameActivity;
+import com.thalhamer.numbersgame.Activity.LevelActivity;
 import com.thalhamer.numbersgame.Factory.App;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.GameDataHolder;
 import com.thalhamer.numbersgame.domain.IapPower;
+import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.enums.PowerEnum;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
 import com.thalhamer.numbersgame.services.InAppPurchaseService;
@@ -36,20 +36,22 @@ public class IAPPopupService extends AbstractPopupService {
     @Inject
     GameDataHolder gameDataHolder;
 
-    public PopupWindow createIapStorePopup(final Activity activity, ViewGroup currentView, PowerEnum powerEnum, InAppPurchaseService inAppPurchaseService) {
+    public PopupWindow buildPopupWindow(PopupResult popupResult, PowerEnum powerEnum, InAppPurchaseService inAppPurchaseService) {
         gameDataHolder.setPopupScreenOpen(true);
-        if (activity instanceof GameActivity) {
-            ((GameActivity) activity).pauseGame();
+        final Activity activity = popupResult.getActivity();
+        if (activity instanceof LevelActivity) {
+            ((LevelActivity) activity).pauseGame();
         }
 
         //initialize layout
-        final RelativeLayout fullLayout = (RelativeLayout) activity.getLayoutInflater().inflate(R.layout.buy_power_full_store, currentView, false);
+        final RelativeLayout fullLayout = (RelativeLayout) activity.getLayoutInflater().inflate(R.layout.buy_power_full_store, popupResult.getCurrentView(), false);
         fullLayout.removeView(fullLayout.findViewById(R.id.samplePowerTab));
         fullLayout.removeView(fullLayout.findViewById(R.id.samplePowerImage));
+        popupResult.setPopupView(fullLayout);
 
         IabHelper mHelper = null;
-        if (activity instanceof GameActivity) {
-            mHelper = ((GameActivity) activity).getmHelper();
+        if (activity instanceof LevelActivity) {
+            mHelper = ((LevelActivity) activity).getmHelper();
         }
 
         List<IapPower> iapPowers = Lists.newArrayList();
@@ -61,7 +63,7 @@ public class IAPPopupService extends AbstractPopupService {
 
         //create tab views (the main event)
         for (PowerEnum currentPowerEnum : PowerEnum.values()) {
-            View powerView = createIapBuyView(activity, currentView, currentPowerEnum);
+            View powerView = createIapBuyView(popupResult, currentPowerEnum);
             fullLayout.addView(powerView);
             ImageView clickableTabImage = createPowerTabImage(activity, PowerEnum.CLEAR_ONE_ENUM, currentTabImageMargin);
             currentTabImageMargin += tabImageIncrement;
@@ -74,7 +76,7 @@ public class IAPPopupService extends AbstractPopupService {
         }
 
         inAppPurchaseService.setPowerBuyDetails(activity, mHelper, iapPowers);
-        final PopupWindow popupWindow = createPopupWindow(fullLayout, currentView, activity, false);
+        final PopupWindow popupWindow = createPopupWindow(popupResult);
 
         final ImageButton cancelButton = (ImageButton) fullLayout.findViewById(R.id.cancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -82,10 +84,10 @@ public class IAPPopupService extends AbstractPopupService {
             public void onClick(View v) {
                 SoundEnum.CLICK1.getMediaPlayer().start();
                 popupWindow.dismiss();
-                if (activity instanceof GameActivity) {
+                if (activity instanceof LevelActivity) {
                     gameDataHolder.setPopupScreenOpen(false);
                     Log.d("Popupservice", "resumeGame - createIapStore");
-                    ((GameActivity) activity).resumeGame();
+                    ((LevelActivity) activity).resumeGame();
                 }
             }
         });
@@ -103,8 +105,8 @@ public class IAPPopupService extends AbstractPopupService {
         return popupWindow;
     }
 
-    private View createIapBuyView(Activity activity, ViewGroup currentView, PowerEnum powerEnum) {
-        final View powerView = activity.getLayoutInflater().inflate(R.layout.buy_power, currentView, false);
+    private View createIapBuyView(PopupResult popupResult, PowerEnum powerEnum) {
+        final View powerView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.buy_power, popupResult.getCurrentView(), false);
         powerView.setBackgroundResource(powerEnum.getTabImageId());
         ImageView powerImage = (ImageView) powerView.findViewById(R.id.powerImage);
         powerImage.setBackgroundResource(powerEnum.getImageResourceId());
@@ -139,5 +141,10 @@ public class IAPPopupService extends AbstractPopupService {
         for (ImageView imageView : bringForwardViews) {
             imageView.bringToFront();
         }
+    }
+
+    @Override
+    public boolean isFullScreen() {
+        return false;
     }
 }

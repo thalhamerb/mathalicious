@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -13,11 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thalhamer.numbersgame.Activity.ChooseLevelActivity;
-import com.thalhamer.numbersgame.Activity.GameActivity;
+import com.thalhamer.numbersgame.Activity.LevelActivity;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.GameDataHolder;
 import com.thalhamer.numbersgame.domain.LevelData;
 import com.thalhamer.numbersgame.domain.LevelInfo;
+import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.domain.StarsInfo;
 import com.thalhamer.numbersgame.domain.Stats;
 import com.thalhamer.numbersgame.enums.Character;
@@ -40,7 +40,7 @@ import javax.inject.Singleton;
  * Created by Brian on 11/14/2015.
  */
 @Singleton
-public class EndGamePopupService extends AbstractPopupService {
+public class LevelEndPopupService extends AbstractPopupService {
 
     public static final int TIME_BETWEEN_MESSAGE_WRITE = 40;
 
@@ -52,24 +52,30 @@ public class EndGamePopupService extends AbstractPopupService {
     MessageService messageService;
     @Inject
     SoundService soundService;
+    @Inject
+    LevelInfoPopupService levelInfoPopupService;
 
     GridTileDataService gridTileDataService = new GridTileDataService();
 
-    public void createEndGamePopup(Activity activity, ViewGroup currentView) {
-        final View popupView = activity.getLayoutInflater().inflate(R.layout.popup_end_game, currentView, false);
-        LevelInfo levelInfo = gameDataHolder.getLevelInfo();
+    public void buildPopupWindow(PopupResult popupResult) {
+        Activity activity = popupResult.getActivity();
+        View popupView = activity.getLayoutInflater().inflate(R.layout.popup_end_level, popupResult.getCurrentView(), false);
+        popupResult.setPopupView(popupView);
 
-        int numOfStars = setStarsAndScore(popupView, levelInfo);
-        setExtraTasks(activity, popupView, levelInfo);
-        createPopupWindow(popupView, currentView, activity, true);
-        createEndGameThoughtBubbleAndButtons(popupView, numOfStars, activity);
+        int numOfStars = setStarsAndScore(popupResult);
+        setExtraTasks(popupResult);
+        createPopupWindow(popupResult);
+        createEndGameThoughtBubbleAndButtons(popupResult, numOfStars);
 
         if (numOfStars == 3) {
             soundService.playSound(R.raw.oh_yea);
         }
     }
 
-    private void setExtraTasks(Activity activity, View popupView, LevelInfo levelInfo) {
+    private void setExtraTasks(PopupResult popupResult) {
+        LevelInfo levelInfo = gameDataHolder.getLevelInfo();
+        View popupView = popupResult.getPopupView();
+
         //get and reset extra task related views
         LinearLayout taskLayout = (LinearLayout) popupView.findViewById(R.id.otherTasks);
         taskLayout.removeAllViews();
@@ -80,12 +86,14 @@ public class EndGamePopupService extends AbstractPopupService {
             Map<Object, String> extraTasks = gridTileDataService.getGridTileDataDescriptions(levelInfo.getGridTileData());
             if (!extraTasks.isEmpty()) {
                 extraTasksTitle.setVisibility(View.VISIBLE);
-                gridTileDataService.setExtraTaskDescriptionsInLinearLayout(activity, extraTasks, taskLayout, levelInfo.getGridData());
+                gridTileDataService.setExtraTaskDescriptionsInLinearLayout(popupResult.getActivity(), extraTasks, taskLayout, levelInfo.getGridData());
             }
         }
     }
 
-    private int setStarsAndScore(View popupView, LevelInfo levelInfo) {
+    private int setStarsAndScore(PopupResult popupResult) {
+        LevelInfo levelInfo = gameDataHolder.getLevelInfo();
+        View popupView = popupResult.getPopupView();
         Stats stats = levelInfo.getStats();
         StarsInfo starsInfo = stats.getStarsInfo();
         int numOfStars = starsAndUnlockService.getNumOfStarsEarned(starsInfo, levelInfo.getStats().getScore());
@@ -104,15 +112,15 @@ public class EndGamePopupService extends AbstractPopupService {
         return numOfStars;
     }
 
-    private void createEndGameThoughtBubbleAndButtons(final View popupView, int numOfStars, final Activity activity) {
-        final TextView thoughtBubbleText = (TextView) popupView.findViewById(R.id.thought_bubble_text);
+    private void createEndGameThoughtBubbleAndButtons(PopupResult popupResult, int numOfStars) {
+        TextView thoughtBubbleText = (TextView) popupResult.getPopupView().findViewById(R.id.thought_bubble_text);
         MessageType messageType = numOfStars > 1 ? MessageType.POSITIVE : MessageType.NEGATIVE;
         Character character = Character.getCharacterFromEpic(gameDataHolder.getLevelData().getEpic());
-        final String message = messageService.getRandomGameMessage(character, messageType, MessageLocation.AFTER_GAME);
-        startTimedMessageCreation(popupView, activity, thoughtBubbleText, message);
+        String message = messageService.getRandomGameMessage(character, messageType, MessageLocation.AFTER_GAME);
+        initTimedMessageAndButtons(popupResult, thoughtBubbleText, message);
     }
 
-    private void startTimedMessageCreation(final View popupView, final Activity activity, final TextView thoughtBubbleText, final String message) {
+    private void initTimedMessageAndButtons(final PopupResult popupResult, final TextView thoughtBubbleText, final String message) {
         final Handler textHandler = new Handler();
         Runnable textRunnable = new Runnable() {
             private String currentText = "";
@@ -125,7 +133,7 @@ public class EndGamePopupService extends AbstractPopupService {
                 currentMessageIndex++;
 
                 if (currentMessageIndex == message.length()) {
-                    activateEndGameButtons(popupView, activity);
+                    activateEndGameButtons(popupResult);
                 } else {
                     textHandler.postDelayed(this, TIME_BETWEEN_MESSAGE_WRITE);
                 }
@@ -135,7 +143,9 @@ public class EndGamePopupService extends AbstractPopupService {
         textHandler.postDelayed(textRunnable, TIME_BETWEEN_MESSAGE_WRITE);
     }
 
-    private void activateEndGameButtons(View popupView, final Activity activity) {
+    private void activateEndGameButtons(final PopupResult popupResult) {
+        View popupView = popupResult.getPopupView();
+        final Activity activity = popupResult.getActivity();
         ImageButton levelScreenButton = (ImageButton) popupView.findViewById(R.id.levelScreenButton);
         levelScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +165,7 @@ public class EndGamePopupService extends AbstractPopupService {
             public void onClick(View v) {
                 SoundEnum.CLICK1.getMediaPlayer().start();
                 LevelData levelData = gameDataHolder.getLevelData();
-                Intent intent = new Intent(activity, GameActivity.class);
+                Intent intent = new Intent(activity, LevelActivity.class);
                 intent.putExtra(activity.getString(R.string.CHOSEN_LEVEL), levelData.getLevel());
                 intent.putExtra(activity.getString(R.string.epic), levelData.getEpic());
                 intent.putExtra(activity.getString(R.string.section), levelData.getSection());
@@ -168,13 +178,16 @@ public class EndGamePopupService extends AbstractPopupService {
             @Override
             public void onClick(View v) {
                 SoundEnum.CLICK1.getMediaPlayer().start();
-                Intent intent = new Intent(activity, GameActivity.class);
+                popupResult.getPopupWindow().dismiss();
                 LevelData nextLevelData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
-                intent.putExtra(activity.getString(R.string.CHOSEN_LEVEL), nextLevelData.getLevel());
-                intent.putExtra(activity.getString(R.string.epic), nextLevelData.getEpic());
-                intent.putExtra(activity.getString(R.string.section), nextLevelData.getSection());
-                activity.startActivity(intent);
+                PopupResult levelInfoPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
+                levelInfoPopupService.buildPopupWindow(levelInfoPopupResult, nextLevelData, false, true);
             }
         });
+    }
+
+    @Override
+    public boolean isFullScreen() {
+        return true;
     }
 }

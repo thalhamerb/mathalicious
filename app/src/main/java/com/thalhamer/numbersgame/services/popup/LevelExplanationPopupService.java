@@ -2,7 +2,6 @@ package com.thalhamer.numbersgame.services.popup;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -17,6 +16,7 @@ import com.google.common.collect.Lists;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.GameDataHolder;
 import com.thalhamer.numbersgame.domain.GridData;
+import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.enums.GameExplanation;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
 import com.thalhamer.numbersgame.viewhelper.TouchStateHolder;
@@ -32,23 +32,28 @@ import javax.inject.Singleton;
  * Created by Brian on 11/14/2015.
  */
 @Singleton
-public class GameExplanationPopupService extends AbstractPopupService {
+public class LevelExplanationPopupService extends AbstractPopupService {
 
     @Inject
     GameDataHolder gameDataHolder;
 
-    public PopupWindow createGameExplanationPopup(Activity activity, ViewGroup currentView, List<GameExplanation> enums) {
-        FrameLayout popupLayout = (FrameLayout) activity.getLayoutInflater().inflate(R.layout.popup_game_explanation,
+    public PopupWindow buildPopupWindow(PopupResult popupResult, List<GameExplanation> enums) {
+        Activity activity = popupResult.getActivity();
+        ViewGroup currentView = popupResult.getCurrentView();
+        FrameLayout popupLayout = (FrameLayout) activity.getLayoutInflater().inflate(R.layout.popup_level_explanation,
                 currentView, false);
-        List<View> views = createViews(activity, enums, popupLayout);
-        PopupWindow popupWindow = createPopupWindow(popupLayout, currentView, activity, true);
-        setAllViewsButtons(activity, views, popupWindow);
+        popupResult.setPopupView(popupLayout);
+
+        List<View> views = createViews(popupResult, enums);
+        PopupWindow popupWindow = createPopupWindow(popupResult);
+        popupResult.setPopupWindow(popupWindow);
+        setAllViewsButtons(popupResult, views);
         return popupWindow;
     }
 
-    private void setAllViewsButtons(Activity activity, final List<View> views, final PopupWindow popupWindow) {
-        final Animation slideOutLeft = AnimationUtils.loadAnimation(activity, R.anim.slide_out_left);
-        final Animation slideInRight = AnimationUtils.loadAnimation(activity, R.anim.slide_in_right);
+    private void setAllViewsButtons(final PopupResult popupResult, final List<View> views) {
+        final Animation slideOutLeft = AnimationUtils.loadAnimation(popupResult.getActivity(), R.anim.slide_out_left);
+        final Animation slideInRight = AnimationUtils.loadAnimation(popupResult.getActivity(), R.anim.slide_in_right);
         for (int i = 0; i < views.size(); i++) {
             final View view = views.get(i);
             if (i > 0) {
@@ -76,13 +81,12 @@ public class GameExplanationPopupService extends AbstractPopupService {
                     @Override
                     public void onClick(View v) {
                         SoundEnum.CLICK1.getMediaPlayer().start();
-                        if (gameDataHolder != null) {
+                        if (gameDataHolder != null && popupResult.getDuringGameStart()) {
                             gameDataHolder.setPopupScreenOpen(false);
                             TouchStateHolder.setTouchState(GridData.TouchState.ENABLED);
-                            Log.d("Popupservice", "resumeGame - createGameExplanationpopup");
-                            gameDataHolder.getGameActivity().startGame();
+                            gameDataHolder.getLevelActivity().startGame();
                         }
-                        popupWindow.dismiss();
+                        popupResult.getPopupWindow().dismiss();
                     }
                 });
             }
@@ -90,10 +94,10 @@ public class GameExplanationPopupService extends AbstractPopupService {
     }
 
     @NonNull
-    private List<View> createViews(Activity activity, List<GameExplanation> enums, FrameLayout popupLayout) {
+    private List<View> createViews(PopupResult popupResult, List<GameExplanation> enums) {
         final List<View> gameExplanationViews = Lists.newArrayList();
         for (GameExplanation enumObject : enums) {
-            final View enumView = activity.getLayoutInflater().inflate(R.layout.game_explanation, popupLayout, false);
+            final View enumView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.level_explanation_fragment, popupResult.getCurrentView(), false);
             TextView title = (TextView) enumView.findViewById(R.id.title);
             TextView description = (TextView) enumView.findViewById(R.id.description);
             ImageView imageView = (ImageView) enumView.findViewById(R.id.image);
@@ -102,9 +106,14 @@ public class GameExplanationPopupService extends AbstractPopupService {
             description.setText(enumObject.getDescription());
             imageView.setImageResource(enumObject.getExplanationId());
 
-            popupLayout.addView(enumView);
+            ((FrameLayout) popupResult.getPopupView()).addView(enumView);
             gameExplanationViews.add(enumView);
         }
         return gameExplanationViews;
+    }
+
+    @Override
+    public boolean isFullScreen() {
+        return true;
     }
 }

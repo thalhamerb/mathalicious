@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup_border">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/title_textSize"
+                android:text="Game Intro"
+                android:theme="@style/AppTheme.BoldAndItalic"
+                android:textColor="#FFFFFF"
+                android:id="@+id/title"
+                android:layout_marginTop="@dimen/title_marginTop"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/leftImage"
+                android:src="@mipmap/einstein" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/rightImage"
+                android:src="@mipmap/newton" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#FFFFFF"
+                android:text="@string/game_intro"
+                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/description"
+                android:layout_below="@id/title" />
+
+            <Button
+                android:layout_width="@dimen/single_button_width"
+                android:layout_height="@dimen/single_button_height"
+                android:text="Got it!"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/single_button_textSize"
+                android:id="@+id/okButton"
+                android:background="@drawable/popup_button"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/description"
+                android:layout_margin="@dimen/level_info_button_marginTop" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

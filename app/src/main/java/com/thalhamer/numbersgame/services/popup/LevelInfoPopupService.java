@@ -12,9 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.thalhamer.numbersgame.Activity.GameActivity;
+import com.thalhamer.numbersgame.Activity.LevelActivity;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.LevelData;
+import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.domain.StarsInfo;
 import com.thalhamer.numbersgame.enums.ScoreType;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
@@ -51,14 +52,21 @@ public class LevelInfoPopupService extends AbstractPopupService {
     public LevelInfoPopupService() {
     }
 
-    public PopupWindow createLevelInfoPopup(final Activity activity, final LevelData levelData,
-                                            ViewGroup currentView, boolean hideStartButton) throws JSONException, IOException {
-
-        JSONObject levelObject = getJsonObject(levelData);
-        View popupView = activity.getLayoutInflater().inflate(R.layout.popup_level_info, currentView, false);
-        setTitleAndDescription(activity, levelData, levelObject, popupView);
-        setStarsInfo(levelData, levelObject, popupView);
-        return initiateButtonsAndCreatePopupWindow(activity, levelData, currentView, hideStartButton, popupView);
+    public PopupWindow buildPopupWindow(PopupResult popupResult, LevelData levelData,
+                                        boolean hideStartButton, boolean hideCancelButton) {
+        try {
+            Activity activity = popupResult.getActivity();
+            ViewGroup currentView = popupResult.getCurrentView();
+            JSONObject levelObject = getJsonObject(levelData);
+            View popupView = activity.getLayoutInflater().inflate(R.layout.popup_level_info, currentView, false);
+            popupResult.setPopupView(popupView);
+            setTitleAndDescription(popupResult, levelData, levelObject);
+            setStarsInfo(popupResult, levelData, levelObject);
+            return initiateButtonsAndCreatePopupWindow(popupResult, levelData, hideStartButton, hideCancelButton);
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private JSONObject getJsonObject(LevelData levelData) throws IOException, JSONException {
@@ -68,7 +76,8 @@ public class LevelInfoPopupService extends AbstractPopupService {
         return jsonArray.getJSONObject(levelData.getLevel() - 1);
     }
 
-    private void setTitleAndDescription(Activity activity, LevelData levelData, JSONObject levelObject, View popupView) throws JSONException {
+    private void setTitleAndDescription(PopupResult popupResult, LevelData levelData, JSONObject levelObject) throws JSONException {
+        View popupView = popupResult.getPopupView();
         TextView levelTextView = (TextView) popupView.findViewById(R.id.popUpLevelTitle);
         String text = String.format("Level %s-%s", levelData.getSection(), levelData.getLevel());
         levelTextView.setText(text);
@@ -88,12 +97,13 @@ public class LevelInfoPopupService extends AbstractPopupService {
             Map<Object, String> extraTasks = gridTileDataService.getGridTileDataDescriptions(gridTileData);
             if (!extraTasks.isEmpty()) {
                 extraTasksTitle.setVisibility(View.VISIBLE);
-                gridTileDataService.setExtraTaskDescriptionsInLinearLayout(activity, extraTasks, taskLayout, null);
+                gridTileDataService.setExtraTaskDescriptionsInLinearLayout(popupResult.getActivity(), extraTasks, taskLayout, null);
             }
         }
     }
 
-    private void setStarsInfo(LevelData levelData, JSONObject levelObject, View popupView) throws JSONException {
+    private void setStarsInfo(PopupResult popupResult, LevelData levelData, JSONObject levelObject) throws JSONException {
+        View popupView = popupResult.getPopupView();
         String levelName = savedDataService.constructLevelName(levelData);
         StarsInfo starsInfo = new StarsAndUnlockService().getStarsInfo(levelObject, levelName);
 
@@ -114,9 +124,10 @@ public class LevelInfoPopupService extends AbstractPopupService {
         }
     }
 
-    private PopupWindow initiateButtonsAndCreatePopupWindow(final Activity activity, final LevelData levelData,
-                                                            ViewGroup currentView, boolean hideStartButton, View popupView) {
-
+    private PopupWindow initiateButtonsAndCreatePopupWindow(final PopupResult popupResult, final LevelData levelData,
+                                                            boolean hideStartButton, boolean hideCancelButton) {
+        View popupView = popupResult.getPopupView();
+        final Activity activity = popupResult.getActivity();
         Button startButton = (Button) popupView.findViewById(R.id.startButton);
         if (hideStartButton) {
             startButton.setVisibility(View.INVISIBLE);
@@ -131,25 +142,35 @@ public class LevelInfoPopupService extends AbstractPopupService {
             });
         }
 
-        final PopupWindow popupWindow = createPopupWindow(popupView, currentView, activity, false);
+        final PopupWindow popupWindow = createPopupWindow(popupResult);
 
         ImageButton cancelButton = (ImageButton) popupView.findViewById(R.id.cancel);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SoundEnum.CLICK1.getMediaPlayer().start();
-                popupWindow.dismiss();
-            }
-        });
+        if (hideCancelButton) {
+            cancelButton.setVisibility(View.INVISIBLE);
+        } else {
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SoundEnum.CLICK1.getMediaPlayer().start();
+                    popupWindow.dismiss();
+                }
+            });
+        }
+
         return popupWindow;
     }
 
 
     private void startGameActivity(Activity activity, LevelData levelData) {
-        Intent intent = new Intent(activity, GameActivity.class);
+        Intent intent = new Intent(activity, LevelActivity.class);
         intent.putExtra(activity.getString(R.string.epic), levelData.getEpic());
         intent.putExtra(activity.getString(R.string.section), levelData.getSection());
         intent.putExtra(activity.getString(R.string.CHOSEN_LEVEL), levelData.getLevel());
         activity.startActivity(intent);
+    }
+
+    @Override
+    public boolean isFullScreen() {
+        return false;
     }
 }

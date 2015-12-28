@@ -16,9 +16,9 @@ public class GameConstants {
 
     public static final int MAX_NUM_OF_TILES_FOR_SCORE = 7;
 
-    public static final int DROP_BLOCK_INITIAL_PERIOD_IN_MILLIS = 15000;
-    public static final int DROP_BLOCK_TIME_BETWEEN_FREQ_CHANGES_IN_MILLIS = 31000;
-    public static final double DROP_BLOCK_PERIOD_CHANGE_FACTOR = 0.9;
+    public static final int DROP_BLOCK_INITIAL_PERIOD_IN_MILLIS = 14000;
+    public static final int DROP_BLOCK_TIME_BETWEEN_FREQ_CHANGES_IN_MILLIS = 25000;
+    public static final double DROP_BLOCK_PERIOD_CHANGE_FACTOR = 0.93;
 
     public static final float TILE_BIAS_ADD = 1.16f;
     public static final float TILE_BIAS_SUBTRACT = 1.14f;

@@ -9,11 +9,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.thalhamer.numbersgame.R;
-import com.thalhamer.numbersgame.domain.GameDataHolder;
+import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.domain.Power;
 import com.thalhamer.numbersgame.domain.SectionUnlock;
 import com.thalhamer.numbersgame.enums.Character;
@@ -26,35 +25,41 @@ import javax.inject.Inject;
  * <p/>
  * Created by Brian on 11/14/2015.
  */
-public class SectionUnlockedPopupService extends AbstractPopupService {
+public class SectionUnlockPopupService extends AbstractPopupService {
 
     @Inject
-    GameDataHolder gameDataHolder;
-    @Inject
-    EndGamePopupService endGamePopupService;
+    LevelEndPopupService levelEndPopupService;
 
-    public void createSectionUnlockedPopup(final Activity activity, final ViewGroup currentView, SectionUnlock sectionUnlock) {
+    public void buildPopupWindow(PopupResult popupResult, SectionUnlock sectionUnlock) {
+        Activity activity = popupResult.getActivity();
+        ViewGroup currentView = popupResult.getCurrentView();
+
         final View popupView = activity.getLayoutInflater().inflate(R.layout.popup_unlocked_section, currentView, false);
-        setTitle(popupView, sectionUnlock);
-        setPowersEarned(activity, sectionUnlock, popupView);
-        final PopupWindow popupWindow = createPopupWindow(popupView, currentView, activity, true);
-        setButtons(activity, currentView, popupView, popupWindow);
+        popupResult.setPopupView(popupView);
+
+        setTitle(popupResult, sectionUnlock);
+        setPowersEarned(popupResult, sectionUnlock);
+
+        createPopupWindow(popupResult);
+        setButtons(popupResult);
     }
 
-    private void setButtons(final Activity activity, final ViewGroup currentView, View popupView, final PopupWindow popupWindow) {
-        Button okButton = (Button) popupView.findViewById(R.id.okButton);
+    private void setButtons(final PopupResult popupResult) {
+        Button okButton = (Button) popupResult.getPopupView().findViewById(R.id.okButton);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SoundEnum.CLICK1.getMediaPlayer().start();
-                popupWindow.dismiss();
-                endGamePopupService.createEndGamePopup(activity, currentView);
+                popupResult.getPopupWindow().dismiss();
+                PopupResult levelEndPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
+                levelEndPopupService.buildPopupWindow(levelEndPopupResult);
             }
         });
     }
 
-    private void setPowersEarned(Activity activity, SectionUnlock sectionUnlock, View popupView) {
-        GridLayout gridLayout = (GridLayout) popupView.findViewById(R.id.powerGrid);
+    private void setPowersEarned(PopupResult popupResult, SectionUnlock sectionUnlock) {
+        Activity activity = popupResult.getActivity();
+        GridLayout gridLayout = (GridLayout) popupResult.getPopupView().findViewById(R.id.powerGrid);
         gridLayout.removeAllViews();
         for (Power power : sectionUnlock.getPowers()) {
             ImageView imageView = new ImageView(activity.getBaseContext());
@@ -74,12 +79,17 @@ public class SectionUnlockedPopupService extends AbstractPopupService {
         }
     }
 
-    private void setTitle(View popupView, SectionUnlock sectionUnlock) {
-        TextView title = (TextView) popupView.findViewById(R.id.title);
+    private void setTitle(PopupResult popupResult, SectionUnlock sectionUnlock) {
+        TextView title = (TextView) popupResult.getPopupView().findViewById(R.id.title);
         Character character = Character.getCharacterFromEpic(sectionUnlock.getEpic());
         if (character != null) {
             String text = String.format("You unlocked %s's Section %s!", character.getName(), sectionUnlock.getSection());
             title.setText(text);
         }
+    }
+
+    @Override
+    public boolean isFullScreen() {
+        return true;
     }
 }
