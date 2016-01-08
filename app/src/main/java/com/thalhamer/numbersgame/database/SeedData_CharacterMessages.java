@@ -56,7 +56,7 @@ public class SeedData_CharacterMessages {
         einsteinNegPhrases.add("Intellectual growth should commence at birth and cease only at death.");
 
         List<String> newtonPosPhrases = Lists.newArrayList();
-        newtonPosPhrases.add("Keep that momentum going, or as call it my first law of motion.");
+        newtonPosPhrases.add("Keep that momentum going, or as I call it my first law of motion.");
         newtonPosPhrases.add("That score is so big, it has its own gravity.");
         newtonPosPhrases.add("I'm impressed by your math skills, and I invented calculus.");
         newtonPosPhrases.add("You've earned yourself a cookie.  I prefer Fig Newtons.");

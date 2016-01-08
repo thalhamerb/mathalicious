@@ -71,7 +71,7 @@ public class GridMappingDiagonalService {
 
         //add one new image and drop one place
         Tile topTile = currentCol.get(currentCol.size() - 1);
-        topTile.setImage(gridService.getRandomImage(gameDataHolder.getLevelInfo().getGridData().getGameTileList()));
+        topTile.setImage(gridService.getRandomImage(gameDataHolder.getLevelInfo().getGridData().getGameTileList(), topTile));
         topTile.getImage().setNewImage(true);
 
         imageDropDiagonalAsGroup(diagonalTiles, currentCol, currTile, originalTile, gridMappingService);

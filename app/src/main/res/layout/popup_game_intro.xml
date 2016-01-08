@@ -56,7 +56,7 @@
                 android:textColor="#ffffff"
                 android:textSize="@dimen/single_button_textSize"
                 android:id="@+id/okButton"
-                android:background="@drawable/popup_button"
+                android:background="@drawable/my_button"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/description"
                 android:layout_margin="@dimen/level_info_button_marginTop" />
