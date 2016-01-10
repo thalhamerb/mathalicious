@@ -11,7 +11,7 @@ public class Version1 {
 
     public static void executeUpdate(SQLiteDatabase db) {
         db.execSQL("create table score_result (_id integer primary key, level text, score integer, " +
-                "won_game integer, sent_for_analysis integer, player_name text)");
+                "stars_earned integer, sent_for_analysis integer, player_name text)");
 
         db.execSQL("create table section_unlock (_id integer primary key, epic integer, section integer, " +
                 "stars integer, powers text, unlocked integer default 0)");
