@@ -8,14 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class SeedDataHelper {
 
-    public static void performGameUnlocksInserts(SQLiteDatabase db, int epic, int section, int stars, String powers, int unlocked) {
+    public static void performSectionUnlockInserts(SQLiteDatabase db, int epic, int section, int stars, String powers, int unlocked) {
         ContentValues insertValues = new ContentValues();
-        insertValues.put(DatabaseContract.GameUnlocks.EPIC, epic);
-        insertValues.put(DatabaseContract.GameUnlocks.SECTION, section);
-        insertValues.put(DatabaseContract.GameUnlocks.STARS, stars);
-        insertValues.put(DatabaseContract.GameUnlocks.POWERS, powers);
-        insertValues.put(DatabaseContract.GameUnlocks.UNLOCKED, unlocked);
-        db.insert(DatabaseContract.GameUnlocks.TABLE_NAME, null, insertValues);
+        insertValues.put(DatabaseContract.SectionUnlock.EPIC, epic);
+        insertValues.put(DatabaseContract.SectionUnlock.SECTION, section);
+        insertValues.put(DatabaseContract.SectionUnlock.STARS, stars);
+        insertValues.put(DatabaseContract.SectionUnlock.POWERS, powers);
+        insertValues.put(DatabaseContract.SectionUnlock.UNLOCKED, unlocked);
+        db.insert(DatabaseContract.SectionUnlock.TABLE_NAME, null, insertValues);
     }
 
 

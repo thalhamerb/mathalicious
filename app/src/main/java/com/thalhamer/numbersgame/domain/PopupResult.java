@@ -21,6 +21,7 @@ public class PopupResult {
 
     //popup specific fields
     private Boolean duringGameStart;
+    private LevelData nextLevelData;
 
     public PopupResult(Activity activity, ViewGroup currentView) {
         this.activity = activity;
@@ -65,5 +66,13 @@ public class PopupResult {
 
     public void setDuringGameStart(Boolean duringGameStart) {
         this.duringGameStart = duringGameStart;
+    }
+
+    public LevelData getNextLevelData() {
+        return nextLevelData;
+    }
+
+    public void setNextLevelData(LevelData nextLevelData) {
+        this.nextLevelData = nextLevelData;
     }
 }

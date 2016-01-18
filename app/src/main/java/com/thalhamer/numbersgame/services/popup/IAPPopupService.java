@@ -65,7 +65,7 @@ public class IAPPopupService extends AbstractPopupService {
         for (PowerEnum currentPowerEnum : PowerEnum.values()) {
             View powerView = createIapBuyView(popupResult, currentPowerEnum);
             fullLayout.addView(powerView);
-            ImageView clickableTabImage = createPowerTabImage(activity, PowerEnum.CLEAR_ONE_ENUM, currentTabImageMargin);
+            ImageView clickableTabImage = createPowerTabImage(activity, PowerEnum.CLEAR_ONE_NUM, currentTabImageMargin);
             currentTabImageMargin += tabImageIncrement;
             fullLayout.addView(clickableTabImage);
             viewsToAlwaysKeepInFront.add(clickableTabImage);

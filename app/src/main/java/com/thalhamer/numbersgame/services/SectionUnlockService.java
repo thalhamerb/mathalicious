@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import com.thalhamer.numbersgame.Factory.App;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.database.DatabaseHelper;
+import com.thalhamer.numbersgame.domain.LevelData;
 import com.thalhamer.numbersgame.domain.Power;
 import com.thalhamer.numbersgame.domain.SectionUnlock;
 import com.thalhamer.numbersgame.enums.PowerEnum;
@@ -106,5 +107,19 @@ public class SectionUnlockService {
         }
 
         return null;
+    }
+
+    public boolean isSectionUnlocked(int epic, int section) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String query = "select * from section_unlock where epic=" + epic + " and section=" + section;
+        Cursor c = db.rawQuery(query, null);
+        SectionUnlock sectionUnlock = mapFirstResultToSectionUnlockObject(c);
+        c.close();
+        db.close();
+        return sectionUnlock.getUnlocked() == 1;
+    }
+
+    public boolean isSectionUnlocked(LevelData levelData) {
+        return isSectionUnlocked(levelData.getEpic(), levelData.getSection());
     }
 }

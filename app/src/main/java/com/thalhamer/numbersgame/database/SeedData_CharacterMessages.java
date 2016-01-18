@@ -36,12 +36,12 @@ public class SeedData_CharacterMessages {
         einsteinPosPhrases.add("That score is so high, you should get a novel prize.");
         einsteinPosPhrases.add("You are doing so well.  We should patent your talent.");
         einsteinPosPhrases.add("That score is so massive, light bends around it.");
-        einsteinPosPhrases.add("Ohh yeaaa! I think you are ready for the multiply levels.");
         einsteinPosPhrases.add("I need help with a new theory. You up for the challenge?");
         einsteinPosPhrases.add("You must be a magician because that was 'mathical'.");
         einsteinPosPhrases.add("That was the bomb diggity!  Did I say that right?  I wasn't born this century.");
-        einsteinPosPhrases.add("I better put some sunblock on before all of those stars gives me a sunburn.");
+        einsteinPosPhrases.add("Let this day be remembered as the day you got that score.");
         einsteinPosPhrases.add("If there was an Olympic event for this game you would win gold.");
+        einsteinPosPhrases.add("Nice! I'm going to put that score on my refrigerator.");
 
         List<String> einsteinNegPhrases = Lists.newArrayList();
         einsteinNegPhrases.add("Neeeiiiinnnnn!! (Translation from German: Noooooo!!).");
@@ -53,7 +53,9 @@ public class SeedData_CharacterMessages {
         einsteinNegPhrases.add("That star looks lonely.  It needs a friend or two.");
         einsteinNegPhrases.add("With practice comes greatness.");
         einsteinNegPhrases.add("A person who never made a mistake never tried anything new.");
-        einsteinNegPhrases.add("Intellectual growth should commence at birth and cease only at death.");
+        einsteinNegPhrases.add("You can't make an omelette without a few cracked eggs.");
+        einsteinNegPhrases.add("I never try something new without expecting to fail a few times.");
+        einsteinNegPhrases.add("Do not worry about your difficulties in mathematics.  I can assure you mine are still greater.");
 
         List<String> newtonPosPhrases = Lists.newArrayList();
         newtonPosPhrases.add("Keep that momentum going, or as I call it my first law of motion.");
@@ -67,8 +69,8 @@ public class SeedData_CharacterMessages {
         newtonPosPhrases.add("Another level bites the dust.  Oh yeah!");
         newtonPosPhrases.add("You should do the chicken dance to celebrate that score!");
         newtonPosPhrases.add("I thought of a nickname for you, 'The Human Calculator'.");
-        newtonPosPhrases.add("There's the shot...swish.  Nothing but net!");
         newtonPosPhrases.add("You are a math rockstar!");
+        newtonPosPhrases.add("Ohh yeaaa! I think you are ready for the multiply levels.");
 
         List<String> newtonNegPhrases = Lists.newArrayList();
         newtonNegPhrases.add("You'll do better next time!");
@@ -86,11 +88,16 @@ public class SeedData_CharacterMessages {
 
         List<String> galileoPosPhrases = Lists.newArrayList();
         galileoPosPhrases.add("That score is astronomical!");
-        galileoPosPhrases.add("I don't even need my telescope to see all of those stars!");
+        galileoPosPhrases.add("I don't need my telescope to see all of those stars!");
         galileoPosPhrases.add("Nice!  I think I have another star in this beard somewhere.");
         galileoPosPhrases.add("Wow. Enough said...");
         galileoPosPhrases.add("Look at all of those stars!");
         galileoPosPhrases.add("Pro status.");
+        galileoPosPhrases.add("That score is just lovely.");
+        galileoPosPhrases.add("There's the shot...swish.  Nothing but net!");
+        galileoPosPhrases.add("I better put some sunblock on before all of those stars gives me a sunburn.");
+        galileoPosPhrases.add("That score is so big, it casts a shadow.");
+        galileoPosPhrases.add("Breakdance party!  Wait, I can't move my legs...");
 
         List<String> galileoNegPhrases = Lists.newArrayList();
         galileoNegPhrases.add("You think you got it bad. I was exiled for saying the sun revolves around the earth...still waiting for an apology.");

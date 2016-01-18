@@ -15,19 +15,19 @@ public class Version1 {
 
         db.execSQL("create table section_unlock (_id integer primary key, epic integer, section integer, " +
                 "stars integer, powers text, unlocked integer default 0)");
-        gameUnlocksInserts(db);
+        sectionUnlockInserts(db);
     }
 
-    private static void gameUnlocksInserts(SQLiteDatabase db) {
-        SeedDataHelper.performGameUnlocksInserts(db, 1, 1, 0, null, 1);
-        SeedDataHelper.performGameUnlocksInserts(db, 1, 2, 18, "CLEAR_ONE_ENUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 1, 3, 40, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 2, 1, 65, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 2, 2, 95, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 2, 3, 120, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 3, 1, 135, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 3, 2, 150, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performGameUnlocksInserts(db, 3, 3, 190, "CLEAR_ONE_ENUM-1,CLEAR_ALL_NUM-3", 0);
+    private static void sectionUnlockInserts(SQLiteDatabase db) {
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 1, 0, null, 1);
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 2, 18, "CLEAR_ONE_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 3, 40, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 1, 62, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 2, 88, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 3, 106, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 3, 1, 130, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 3, 2, 148, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 3, 3, 172, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
     }
 
 

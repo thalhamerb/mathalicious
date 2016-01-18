@@ -26,6 +26,7 @@ import com.thalhamer.numbersgame.enums.MessageType;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
 import com.thalhamer.numbersgame.services.GridTileDataService;
 import com.thalhamer.numbersgame.services.MessageService;
+import com.thalhamer.numbersgame.services.SectionUnlockService;
 import com.thalhamer.numbersgame.services.SoundService;
 import com.thalhamer.numbersgame.services.StarsAndUnlockService;
 
@@ -54,6 +55,8 @@ public class LevelEndPopupService extends AbstractPopupService {
     SoundService soundService;
     @Inject
     LevelInfoPopupService levelInfoPopupService;
+    @Inject
+    SectionUnlockService sectionUnlockService;
 
     GridTileDataService gridTileDataService = new GridTileDataService();
 
@@ -62,6 +65,8 @@ public class LevelEndPopupService extends AbstractPopupService {
         View popupView = activity.getLayoutInflater().inflate(R.layout.popup_end_level, popupResult.getCurrentView(), false);
         popupResult.setPopupView(popupView);
 
+        LevelData nextLevelsData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
+        popupResult.setNextLevelData(nextLevelsData);
         int numOfStars = setStarsAndScore(popupResult);
         setExtraTasks(popupResult);
         createPopupWindow(popupResult);
@@ -121,6 +126,11 @@ public class LevelEndPopupService extends AbstractPopupService {
     }
 
     private void initTimedMessageAndButtons(final PopupResult popupResult, final TextView thoughtBubbleText, final String message) {
+        if (!sectionUnlockService.isSectionUnlocked(popupResult.getNextLevelData())) {
+            Button nextButton = (Button) popupResult.getPopupView().findViewById(R.id.nextButton);
+            nextButton.setVisibility(View.INVISIBLE);
+        }
+
         final Handler textHandler = new Handler();
         Runnable textRunnable = new Runnable() {
             private String currentText = "";
@@ -174,16 +184,18 @@ public class LevelEndPopupService extends AbstractPopupService {
         });
 
         Button nextButton = (Button) popupView.findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SoundEnum.CLICK1.getMediaPlayer().start();
-                popupResult.getPopupWindow().dismiss();
-                LevelData nextLevelData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
-                PopupResult levelInfoPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
-                levelInfoPopupService.buildPopupWindow(levelInfoPopupResult, nextLevelData, false, true);
-            }
-        });
+        if (sectionUnlockService.isSectionUnlocked(popupResult.getNextLevelData())) {
+            nextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SoundEnum.CLICK1.getMediaPlayer().start();
+                    popupResult.getPopupWindow().dismiss();
+                    LevelData nextLevelData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
+                    PopupResult levelInfoPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
+                    levelInfoPopupService.buildPopupWindow(levelInfoPopupResult, nextLevelData, false, true);
+                }
+            });
+        }
     }
 
     @Override
