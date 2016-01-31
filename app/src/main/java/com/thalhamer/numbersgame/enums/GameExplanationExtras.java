@@ -3,6 +3,8 @@ package com.thalhamer.numbersgame.enums;
 import com.thalhamer.numbersgame.R;
 
 /**
+ * these are anything that doesn't fit in other enums that need to go on game explanation
+ *
  * Created by Brian on 12/19/2015.
  */
 public enum GameExplanationExtras implements GameExplanation {
@@ -18,7 +20,7 @@ public enum GameExplanationExtras implements GameExplanation {
     GameExplanationExtras(String description, int explanationId) {
         this.description = description;
         this.explanationId = explanationId;
-        this.gameExplanationTitle = "Other";
+        this.gameExplanationTitle = "Specials";
     }
 
     @Override

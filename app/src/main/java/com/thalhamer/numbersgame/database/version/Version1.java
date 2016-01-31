@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.thalhamer.numbersgame.database.SeedDataHelper;
 
 /**
+ * version 1
+ *
  * Created by Brian on 12/19/2015.
  */
 public class Version1 {
@@ -20,15 +22,11 @@ public class Version1 {
 
     private static void sectionUnlockInserts(SQLiteDatabase db) {
         SeedDataHelper.performSectionUnlockInserts(db, 1, 1, 0, null, 1);
-        SeedDataHelper.performSectionUnlockInserts(db, 1, 2, 18, "CLEAR_ONE_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 1, 3, 40, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 2, 1, 62, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 2, 2, 88, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 2, 3, 106, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 3, 1, 130, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 3, 2, 148, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 3, 3, 172, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 2, 24, "CLEAR_ONE_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 3, 47, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 1, 69, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 2, 91, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 3, 112, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
     }
-
 
 }

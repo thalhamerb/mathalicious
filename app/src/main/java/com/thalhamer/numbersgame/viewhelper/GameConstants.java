@@ -1,6 +1,8 @@
 package com.thalhamer.numbersgame.viewhelper;
 
 /**
+ * Game constants
+ *
  * Created by Brian on 11/25/2015.
  */
 public class GameConstants {
@@ -8,7 +10,7 @@ public class GameConstants {
     public static final int TILE_SHRINK_DURATION = 200;
     public static final int TILE_EXPLOSION_DURATION = 400;
 
-    public static final int NUM_OF_TILES_BETWEEN_CHARACTERS = 20;
+    public static final float PERCENT_OF_TILES_BETWEEN_CHARACTERS = 0.30f;
     public static final float PERCENT_OF_TILES_BETWEEN_POWER_ENUMS = 0.40f;
 
     public static final int CHARACTER_MESSAGE_LARGE_SEQUENCE = 7;
