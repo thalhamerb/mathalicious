@@ -41,6 +41,6 @@ public class GameIntroPopupService extends AbstractPopupService {
 
     @Override
     public boolean isFullScreen() {
-        return false;
+        return true;
     }
 }

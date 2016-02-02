@@ -11,7 +11,7 @@ public enum GameExplanationExtras implements GameExplanation {
 
     //TODO replace image id with permenant one
     POWER_CLEAR("Multiple Tile Clear - occasionally this power will fall into grid.  Click and drag to adjacent " +
-            "tile to clear all tiles of that number.", R.mipmap.explain_power_clear);
+            "tile to clear all tiles of that number.", R.drawable.explain_power_clear);
 
     private String description;
     private int explanationId;

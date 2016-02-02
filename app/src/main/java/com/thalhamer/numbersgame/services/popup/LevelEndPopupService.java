@@ -106,7 +106,7 @@ public class LevelEndPopupService extends AbstractPopupService {
         for (int i = 0; i < gridLayout.getColumnCount(); i++) {
             ImageView imageView = (ImageView) gridLayout.getChildAt(i);
             if (Integer.valueOf((String) imageView.getTag()) > numOfStars) {
-                imageView.setBackgroundResource(R.mipmap.star_empty_blk);
+                imageView.setBackgroundResource(R.drawable.star_empty_blk);
             }
         }
 
