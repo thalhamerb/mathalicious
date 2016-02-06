@@ -58,11 +58,13 @@
     <dimen name="scrollArrowMargin">12dp</dimen>
     <dimen name="titleTextSize">30sp</dimen>
     <dimen name="titlePaddingTop">72sp</dimen>
-    <dimen name="mainImageSize">200dp</dimen>
-    <dimen name="mainImageTextBottom">64dp</dimen>
+    <dimen name="mainImageSize">240dp</dimen>
+    <dimen name="mainImageTextBottom">80dp</dimen>
     <dimen name="mainImageTextSize">31sp</dimen>
     <dimen name="mainImageStarSize">26dp</dimen>
     <dimen name="mainImageEpicName">26dp</dimen>
+    <dimen name="sectionImageSize">180dp</dimen>
+    <dimen name="sectionImageTextBottom">70dp</dimen>
 
     <dimen name="level_button_size">65dp</dimen>
     <dimen name="level_button_margin_horiz">4dp</dimen>
@@ -144,7 +146,7 @@
     <dimen name="buy_power_cancel_sideLength">26dp</dimen>
     <dimen name="buy_power_cancel_marginTop">60dp</dimen>
     <dimen name="buy_power_tabImages_top">11dp</dimen>
-    <dimen name="buy_power_tabImage1_left">12dp</dimen>
+    <dimen name="buy_power_tabImage1_left">13dp</dimen>
     <dimen name="buy_power_tabImage_increment">62dp</dimen>
     <dimen name="buy_power_cancel">255dp</dimen>
 
