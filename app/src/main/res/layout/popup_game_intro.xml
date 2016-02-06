@@ -24,15 +24,15 @@
                 android:layout_centerHorizontal="true" />
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/game_intro_image_side"
+                android:layout_height="@dimen/game_intro_image_side"
                 android:layout_alignParentLeft="true"
                 android:id="@+id/leftImage"
                 android:src="@drawable/einstein" />
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/game_intro_image_side"
+                android:layout_height="@dimen/game_intro_image_side"
                 android:layout_alignParentRight="true"
                 android:id="@+id/rightImage"
                 android:src="@drawable/newton" />
@@ -42,10 +42,8 @@
                 android:layout_height="match_parent"
                 android:textColor="#FFFFFF"
                 android:text="@string/game_intro"
-                android:textSize="17dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
+                android:textSize="@dimen/game_intro_description_size"
+                android:layout_margin="@dimen/game_intro_description_margin"
                 android:id="@+id/description"
                 android:layout_below="@id/title" />
 

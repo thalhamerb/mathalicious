@@ -53,7 +53,7 @@ public class LevelInfoPopupService extends AbstractPopupService {
     }
 
     public PopupWindow buildPopupWindow(PopupResult popupResult, LevelData levelData,
-                                        boolean hideStartButton, boolean hideCancelButton) {
+                                        boolean startOrOkButton, boolean hideCancelButton) {
         try {
             Activity activity = popupResult.getActivity();
             ViewGroup currentView = popupResult.getCurrentView();
@@ -62,7 +62,7 @@ public class LevelInfoPopupService extends AbstractPopupService {
             popupResult.setPopupView(popupView);
             setTitleAndDescription(popupResult, levelData, levelObject);
             setStarsInfo(popupResult, levelData, levelObject);
-            return initiateButtonsAndCreatePopupWindow(popupResult, levelData, hideStartButton, hideCancelButton);
+            return initiateButtonsAndCreatePopupWindow(popupResult, levelData, startOrOkButton, hideCancelButton);
         } catch (JSONException | IOException e) {
             e.printStackTrace();
             return null;
@@ -125,13 +125,13 @@ public class LevelInfoPopupService extends AbstractPopupService {
     }
 
     private PopupWindow initiateButtonsAndCreatePopupWindow(final PopupResult popupResult, final LevelData levelData,
-                                                            boolean hideStartButton, boolean hideCancelButton) {
+                                                            boolean startOrOkButton, boolean hideCancelButton) {
         View popupView = popupResult.getPopupView();
         final Activity activity = popupResult.getActivity();
+        final PopupWindow popupWindow = createPopupWindow(popupResult);
+
         Button startButton = (Button) popupView.findViewById(R.id.startButton);
-        if (hideStartButton) {
-            startButton.setVisibility(View.INVISIBLE);
-        } else {
+        if (startOrOkButton) {
             startButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -140,9 +140,17 @@ public class LevelInfoPopupService extends AbstractPopupService {
                     startGameActivity(activity, levelData);
                 }
             });
+        } else {
+            startButton.setText("OK");
+            startButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SoundEnum.CLICK1.getMediaPlayer().start();
+                    popupWindow.dismiss();
+                }
+            });
         }
 
-        final PopupWindow popupWindow = createPopupWindow(popupResult);
 
         ImageButton cancelButton = (ImageButton) popupView.findViewById(R.id.cancel);
         if (hideCancelButton) {

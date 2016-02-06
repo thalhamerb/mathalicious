@@ -192,7 +192,7 @@ public class LevelEndPopupService extends AbstractPopupService {
                     popupResult.getPopupWindow().dismiss();
                     LevelData nextLevelData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
                     PopupResult levelInfoPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
-                    levelInfoPopupService.buildPopupWindow(levelInfoPopupResult, nextLevelData, false, true);
+                    levelInfoPopupService.buildPopupWindow(levelInfoPopupResult, nextLevelData, true, true);
                 }
             });
         }

@@ -97,7 +97,7 @@ public class LevelExplanationPopupService extends AbstractPopupService {
     private List<View> createViews(PopupResult popupResult, List<GameExplanation> enums) {
         final List<View> gameExplanationViews = Lists.newArrayList();
         for (GameExplanation enumObject : enums) {
-            final View enumView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.level_explanation_fragment, popupResult.getCurrentView(), false);
+            final View enumView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.popup_level_explanation_fragment, popupResult.getCurrentView(), false);
             TextView title = (TextView) enumView.findViewById(R.id.title);
             TextView description = (TextView) enumView.findViewById(R.id.description);
             ImageView imageView = (ImageView) enumView.findViewById(R.id.image);
