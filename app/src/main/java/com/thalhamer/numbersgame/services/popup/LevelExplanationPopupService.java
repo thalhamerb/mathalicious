@@ -37,6 +37,10 @@ public class LevelExplanationPopupService extends AbstractPopupService {
     @Inject
     GameDataHolder gameDataHolder;
 
+    @Inject
+    public LevelExplanationPopupService() {
+    }
+
     public PopupWindow buildPopupWindow(PopupResult popupResult, List<GameExplanation> enums) {
         Activity activity = popupResult.getActivity();
         ViewGroup currentView = popupResult.getCurrentView();

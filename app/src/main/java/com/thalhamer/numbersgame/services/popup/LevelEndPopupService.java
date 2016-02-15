@@ -60,6 +60,10 @@ public class LevelEndPopupService extends AbstractPopupService {
 
     GridTileDataService gridTileDataService = new GridTileDataService();
 
+    @Inject
+    public LevelEndPopupService() {
+    }
+
     public void buildPopupWindow(PopupResult popupResult) {
         Activity activity = popupResult.getActivity();
         View popupView = activity.getLayoutInflater().inflate(R.layout.popup_end_level, popupResult.getCurrentView(), false);

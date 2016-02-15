@@ -30,6 +30,10 @@ public class SectionUnlockPopupService extends AbstractPopupService {
     @Inject
     LevelEndPopupService levelEndPopupService;
 
+    @Inject
+    public SectionUnlockPopupService() {
+    }
+
     public void buildPopupWindow(PopupResult popupResult, SectionUnlock sectionUnlock) {
         Activity activity = popupResult.getActivity();
         ViewGroup currentView = popupResult.getCurrentView();

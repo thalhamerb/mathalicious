@@ -29,6 +29,10 @@ public class GridMappingDiagonalService {
     @Inject
     GameDataHolder gameDataHolder;
 
+    @Inject
+    public GridMappingDiagonalService() {
+    }
+
     public void performDiagonalMove(ArrayList<Tile> currentCol, GridMappingService gridMappingService) {
         for (Tile currTile : currentCol) {
             DiagonalTile diagTile = gridService.getEmptyTileBelowOrDownDiagonal(currTile);

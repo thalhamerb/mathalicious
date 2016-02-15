@@ -28,10 +28,15 @@ public class SpecialTileService {
 
     public static final int OPEN_LEPRECHAUN_TIME = 300;
     public static final int KEEP_OPEN_LEPRECHAUN_TIME = 800;
+
     @Inject
     GameDataHolder gameDataHolder;
     @Inject
     GridMappingService gridMappingService;
+
+    @Inject
+    public SpecialTileService() {
+    }
 
     private RectF leprechaunRectF;
 

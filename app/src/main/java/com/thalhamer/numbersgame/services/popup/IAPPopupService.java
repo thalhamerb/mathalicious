@@ -36,6 +36,10 @@ public class IAPPopupService extends AbstractPopupService {
     @Inject
     GameDataHolder gameDataHolder;
 
+    @Inject
+    public IAPPopupService() {
+    }
+
     public PopupWindow buildPopupWindow(PopupResult popupResult, PowerEnum powerEnum, InAppPurchaseService inAppPurchaseService) {
         gameDataHolder.setPopupScreenOpen(true);
         final Activity activity = popupResult.getActivity();

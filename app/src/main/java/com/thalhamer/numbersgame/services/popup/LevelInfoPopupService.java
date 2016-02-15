@@ -49,6 +49,7 @@ public class LevelInfoPopupService extends AbstractPopupService {
     @Inject
     GridTileDataService gridTileDataService;
 
+    @Inject
     public LevelInfoPopupService() {
     }
 

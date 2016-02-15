@@ -31,6 +31,10 @@ public class SectionUnlockService {
     @Inject
     SavedDataService savedDataService;
 
+    @Inject
+    public SectionUnlockService() {
+    }
+
     private SectionUnlock getNextSectionGameUnlock() {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String query = "select * from section_unlock where unlocked = 0 order by stars asc";

@@ -1,0 +1,1 @@
+package com.thalhamer.numbersgame.dagger.module;import dagger.Module;/** * Module */@Modulepublic class AppModule {}
