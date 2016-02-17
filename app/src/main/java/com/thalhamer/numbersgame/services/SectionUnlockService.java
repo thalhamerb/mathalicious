@@ -41,7 +41,6 @@ public class SectionUnlockService {
         Cursor c = db.rawQuery(query, null);
         SectionUnlock sectionUnlock = mapFirstResultToSectionUnlockObject(c);
         c.close();
-        db.close();
         return sectionUnlock;
     }
 
@@ -78,7 +77,6 @@ public class SectionUnlockService {
         Cursor c = db.rawQuery(query, null);
         SectionUnlock sectionUnlock = mapFirstResultToSectionUnlockObject(c);
         c.close();
-        db.close();
         return sectionUnlock;
     }
 
@@ -87,7 +85,6 @@ public class SectionUnlockService {
         ContentValues args = new ContentValues();
         args.put("unlocked", 1);
         int numOfRowsUpdated = db.update("section_unlock", args, "epic=? and section=?", new String[]{epic.toString(), section.toString()});
-        db.close();
         return numOfRowsUpdated == 1;
     }
 
@@ -119,7 +116,6 @@ public class SectionUnlockService {
         Cursor c = db.rawQuery(query, null);
         SectionUnlock sectionUnlock = mapFirstResultToSectionUnlockObject(c);
         c.close();
-        db.close();
         return sectionUnlock.getUnlocked() == 1;
     }
 
