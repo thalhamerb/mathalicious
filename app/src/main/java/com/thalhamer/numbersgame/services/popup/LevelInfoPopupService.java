@@ -98,7 +98,7 @@ public class LevelInfoPopupService extends AbstractPopupService {
             Map<Object, String> extraTasks = gridTileDataService.getGridTileDataDescriptions(gridTileData);
             if (!extraTasks.isEmpty()) {
                 extraTasksTitle.setVisibility(View.VISIBLE);
-                gridTileDataService.setExtraTaskDescriptionsInLinearLayout(popupResult.getActivity(), extraTasks, taskLayout, null);
+                gridTileDataService.setExtraTaskDescriptions(popupResult.getActivity(), extraTasks, extraTasksTitle, taskLayout, null);
             }
         }
     }

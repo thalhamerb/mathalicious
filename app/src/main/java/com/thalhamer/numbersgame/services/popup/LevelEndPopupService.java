@@ -95,7 +95,9 @@ public class LevelEndPopupService extends AbstractPopupService {
             Map<Object, String> extraTasks = gridTileDataService.getGridTileDataDescriptions(levelInfo.getGridTileData());
             if (!extraTasks.isEmpty()) {
                 extraTasksTitle.setVisibility(View.VISIBLE);
-                gridTileDataService.setExtraTaskDescriptionsInLinearLayout(popupResult.getActivity(), extraTasks, taskLayout, levelInfo.getGridData());
+                boolean allTasksCompleted = gridTileDataService.setExtraTaskDescriptions(popupResult.getActivity(),
+                        extraTasks, extraTasksTitle, taskLayout, levelInfo.getGridData());
+                popupResult.setAllTasksCompleted(allTasksCompleted);
             }
         }
     }
@@ -125,7 +127,15 @@ public class LevelEndPopupService extends AbstractPopupService {
         TextView thoughtBubbleText = (TextView) popupResult.getPopupView().findViewById(R.id.thought_bubble_text);
         MessageType messageType = numOfStars > 1 ? MessageType.POSITIVE : MessageType.NEGATIVE;
         Character character = Character.getCharacterFromEpic(gameDataHolder.getLevelData().getEpic());
-        String message = messageService.getRandomGameMessage(character, messageType, MessageLocation.AFTER_GAME);
+        ImageView characterImage = (ImageView) popupResult.getPopupView().findViewById(R.id.character);
+        characterImage.setImageBitmap(character.fullBodyBitmap());
+        String message;
+        if (popupResult.isAllTasksCompleted()) {
+            message = messageService.getRandomGameMessage(character, messageType, MessageLocation.AFTER_GAME);
+        } else {
+            message = "You don't get any stars because you didn't complete all of the requirements.";
+        }
+
         initTimedMessageAndButtons(popupResult, thoughtBubbleText, message);
     }
 

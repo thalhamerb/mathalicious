@@ -22,6 +22,7 @@ public class PopupResult {
     //popup specific fields
     private Boolean duringGameStart;
     private LevelData nextLevelData;
+    private boolean allTasksCompleted = true;
 
     public PopupResult(Activity activity, ViewGroup currentView) {
         this.activity = activity;
@@ -74,5 +75,13 @@ public class PopupResult {
 
     public void setNextLevelData(LevelData nextLevelData) {
         this.nextLevelData = nextLevelData;
+    }
+
+    public boolean isAllTasksCompleted() {
+        return allTasksCompleted;
+    }
+
+    public void setAllTasksCompleted(boolean allTasksCompleted) {
+        this.allTasksCompleted = allTasksCompleted;
     }
 }

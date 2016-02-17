@@ -75,7 +75,7 @@ public class SeedData_CharacterMessages {
         List<String> newtonNegPhrases = Lists.newArrayList();
         newtonNegPhrases.add("You'll do better next time!");
         newtonNegPhrases.add("Try again!  Thomas Edison made 1,000 unsuccessful attempts at inventing the light bulb before he got it right.");
-        newtonNegPhrases.add("I wish I had this game in the 1600's.  It would have kept me busy while staying inside to avoid the Bubonic Plague.");
+        newtonNegPhrases.add("I wish I had this game in the 1600s.  It would have kept me busy while staying inside to avoid the Bubonic Plague.");
         newtonNegPhrases.add("You need some inspiration? Sitting under a tree and letting an apple fall on my head worked for me.");
         newtonNegPhrases.add("In history I am portrayed as a genius.  The truth is my powers are ordinary.  Only my hard work brought me to success.");
         newtonNegPhrases.add("You got the talent.  You just need the practice.");
