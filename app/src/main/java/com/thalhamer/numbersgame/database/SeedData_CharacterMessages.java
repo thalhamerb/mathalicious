@@ -33,7 +33,7 @@ public class SeedData_CharacterMessages {
         einsteinPosPhrases.add("Your fingers must have been moving at the speed of light!");
         einsteinPosPhrases.add("Win one more game and I'll tell you the secret to my hair...and maybe time travel.");
         einsteinPosPhrases.add("Fantastic...like my hair.");
-        einsteinPosPhrases.add("That score is so high, you should get a novel prize.");
+        einsteinPosPhrases.add("That score is so high, you should get a nobel prize.");
         einsteinPosPhrases.add("You are doing so well.  We should patent your talent.");
         einsteinPosPhrases.add("That score is so massive, light bends around it.");
         einsteinPosPhrases.add("I need help with a new theory. You up for the challenge?");
@@ -45,7 +45,7 @@ public class SeedData_CharacterMessages {
 
         List<String> einsteinNegPhrases = Lists.newArrayList();
         einsteinNegPhrases.add("Neeeiiiinnnnn!! (Translation from German: Noooooo!!).");
-        einsteinNegPhrases.add("Lets just let this low score be sucked into the black hole.");
+        einsteinNegPhrases.add("We'll just let this low score be sucked into the black hole.");
         einsteinNegPhrases.add("Here is a hint. Run really fast while playing a timed game and the timer will slow down.");
         einsteinNegPhrases.add("You'll do better next time!  You think I figured out the theory of mass-energy in one try?");
         einsteinNegPhrases.add("My magic eight ball says 'try again'.");
@@ -80,7 +80,7 @@ public class SeedData_CharacterMessages {
         newtonNegPhrases.add("In history I am portrayed as a genius.  The truth is my powers are ordinary.  Only my hard work brought me to success.");
         newtonNegPhrases.add("You got the talent.  You just need the practice.");
         newtonNegPhrases.add("Keep trying!  You'll get it.");
-        newtonNegPhrases.add("Constrant dripping hollows out a stone.");
+        newtonNegPhrases.add("Constant dripping hollows out a stone.");
         newtonNegPhrases.add("Nothing is impossible.  The word itself says \"I'm possible\"");
         newtonNegPhrases.add("Keep trying!  Failures increase the probability of success.");
         newtonNegPhrases.add("Play again.  You got this!");
