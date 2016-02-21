@@ -116,6 +116,9 @@ public class SectionUnlockService {
         Cursor c = db.rawQuery(query, null);
         SectionUnlock sectionUnlock = mapFirstResultToSectionUnlockObject(c);
         c.close();
+        if (sectionUnlock == null) {
+            return false;
+        }
         return sectionUnlock.getUnlocked() == 1;
     }
 
