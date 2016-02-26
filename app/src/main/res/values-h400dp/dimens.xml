@@ -42,9 +42,9 @@
     <dimen name="small_margin">9dp</dimen>
 
     <!-- opening screen -->
-    <dimen name="opening_logo_sideLength">160dp</dimen>
-    <dimen name="opening_logo_marginTop">54dp</dimen>
-    <dimen name="opening_start_marginTop">54dp</dimen>
+    <dimen name="opening_logo_sideLength">190dp</dimen>
+    <dimen name="opening_logo_marginTop">50dp</dimen>
+    <dimen name="opening_start_marginTop">34dp</dimen>
     <dimen name="game_intro_image_side">54dp</dimen>
     <dimen name="game_intro_description_size">16sp</dimen>
     <dimen name="game_intro_description_margin">12dp</dimen>

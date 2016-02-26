@@ -24,4 +24,6 @@ public class GameConstants {
     public static final float TILE_BIAS_ADD = 1.16f;
     public static final float TILE_BIAS_SUBTRACT = 1.14f;
     public static final float TILE_BIAS_MULTIPLY = 1.11f;
+
+    public static final int PAUSE_TIME_IN_MILLIS = 20000;
 }
