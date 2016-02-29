@@ -2,8 +2,9 @@ package com.thalhamer.numbersgame.domain;
 
 import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
+
+import com.thalhamer.numbersgame.util.IabHelper;
 
 /**
  * object holder for popups
@@ -13,7 +14,6 @@ import android.widget.PopupWindow;
 public class PopupResult {
     //set before popupService
     private Activity activity;
-    private ViewGroup currentView;
 
     //set in popupService
     private View popupView;
@@ -23,10 +23,10 @@ public class PopupResult {
     private Boolean duringGameStart;
     private LevelData nextLevelData;
     private boolean allTasksCompleted = true;
+    private IabHelper mHelper;
 
-    public PopupResult(Activity activity, ViewGroup currentView) {
+    public PopupResult(Activity activity) {
         this.activity = activity;
-        this.currentView = currentView;
     }
 
     public Activity getActivity() {
@@ -35,14 +35,6 @@ public class PopupResult {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
-    }
-
-    public ViewGroup getCurrentView() {
-        return currentView;
-    }
-
-    public void setCurrentView(ViewGroup currentView) {
-        this.currentView = currentView;
     }
 
     public View getPopupView() {
@@ -83,5 +75,13 @@ public class PopupResult {
 
     public void setAllTasksCompleted(boolean allTasksCompleted) {
         this.allTasksCompleted = allTasksCompleted;
+    }
+
+    public IabHelper getmHelper() {
+        return mHelper;
+    }
+
+    public void setmHelper(IabHelper mHelper) {
+        this.mHelper = mHelper;
     }
 }

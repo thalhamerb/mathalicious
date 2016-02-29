@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="@dimen/level_power_side_length"
+        android:layout_height="@dimen/level_power_side_length"
+        android:id="@+id/power_clear_tile_single"
+        android:background="@drawable/tile_power_single"
+        android:layout_margin="@dimen/level_power_margin"
+        android:onClick="powerClick" />
+
+    <TextView
+        android:text="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/powerCountFontSize"
+        android:id="@+id/singleTileClearCount"
+        android:layout_marginTop="@dimen/level_power_quantity_margin" />
+
+    <ImageView
+        android:layout_width="@dimen/level_power_side_length"
+        android:layout_height="@dimen/level_power_side_length"
+        android:id="@+id/power_clear_tile_multiple"
+        android:background="@drawable/tile_power_multi"
+        android:layout_margin="@dimen/level_power_margin"
+        android:onClick="powerClick" />
+
+    <TextView
+        android:text="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/powerCountFontSize"
+        android:id="@+id/multiTileClearCount"
+        android:layout_marginTop="@dimen/level_power_quantity_margin" />
+
+    <ImageView
+        android:layout_width="@dimen/level_power_side_length"
+        android:layout_height="@dimen/level_power_side_length"
+        android:id="@+id/power_time_stop"
+        android:background="@drawable/time_power"
+        android:layout_margin="@dimen/level_power_margin"
+        android:onClick="powerClick" />
+
+    <TextView
+        android:text="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/powerCountFontSize"
+        android:id="@+id/stopTimeCount"
+        android:layout_marginTop="@dimen/level_power_quantity_margin" />
+
+</LinearLayout>
+

@@ -43,7 +43,7 @@ public class LevelExplanationPopupService extends AbstractPopupService {
 
     public PopupWindow buildPopupWindow(PopupResult popupResult, List<GameExplanation> enums) {
         Activity activity = popupResult.getActivity();
-        ViewGroup currentView = popupResult.getCurrentView();
+        ViewGroup currentView = (ViewGroup) activity.findViewById(android.R.id.content);
         FrameLayout popupLayout = (FrameLayout) activity.getLayoutInflater().inflate(R.layout.popup_level_explanation,
                 currentView, false);
         popupResult.setPopupView(popupLayout);
@@ -85,7 +85,7 @@ public class LevelExplanationPopupService extends AbstractPopupService {
                     @Override
                     public void onClick(View v) {
                         SoundEnum.CLICK1.getMediaPlayer().start();
-                        if (gameDataHolder != null && popupResult.getDuringGameStart()) {
+                        if (gameDataHolder.getLevelActivity() != null && popupResult.getDuringGameStart()) {
                             gameDataHolder.setPopupScreenOpen(false);
                             TouchStateHolder.setTouchState(GridData.TouchState.ENABLED);
                             gameDataHolder.getLevelActivity().startGame();
@@ -101,7 +101,8 @@ public class LevelExplanationPopupService extends AbstractPopupService {
     private List<View> createViews(PopupResult popupResult, List<GameExplanation> enums) {
         final List<View> gameExplanationViews = Lists.newArrayList();
         for (GameExplanation enumObject : enums) {
-            final View enumView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.popup_level_explanation_fragment, popupResult.getCurrentView(), false);
+            ViewGroup contentView = (ViewGroup) popupResult.getActivity().findViewById(android.R.id.content);
+            final View enumView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.popup_level_explanation_fragment, contentView, false);
             TextView title = (TextView) enumView.findViewById(R.id.title);
             TextView description = (TextView) enumView.findViewById(R.id.description);
             ImageView imageView = (ImageView) enumView.findViewById(R.id.image);

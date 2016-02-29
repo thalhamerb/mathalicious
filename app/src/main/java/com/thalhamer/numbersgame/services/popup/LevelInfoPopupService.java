@@ -57,7 +57,7 @@ public class LevelInfoPopupService extends AbstractPopupService {
                                         boolean startOrOkButton, boolean hideCancelButton) {
         try {
             Activity activity = popupResult.getActivity();
-            ViewGroup currentView = popupResult.getCurrentView();
+            ViewGroup currentView = (ViewGroup) activity.findViewById(android.R.id.content);
             JSONObject levelObject = getJsonObject(levelData);
             View popupView = activity.getLayoutInflater().inflate(R.layout.popup_level_info, currentView, false);
             popupResult.setPopupView(popupView);
@@ -79,6 +79,8 @@ public class LevelInfoPopupService extends AbstractPopupService {
 
     private void setTitleAndDescription(PopupResult popupResult, LevelData levelData, JSONObject levelObject) throws JSONException {
         View popupView = popupResult.getPopupView();
+        ImageView character = (ImageView) popupView.findViewById(R.id.character);
+        character.setImageResource(com.thalhamer.numbersgame.enums.Character.getCharacterFromEpic(levelData.getEpic()).getFaceResourceId());
         TextView levelTextView = (TextView) popupView.findViewById(R.id.popUpLevelTitle);
         String text = String.format("Level %s-%s", levelData.getSection(), levelData.getLevel());
         levelTextView.setText(text);

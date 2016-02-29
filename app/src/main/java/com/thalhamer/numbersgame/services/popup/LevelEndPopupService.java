@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -66,7 +67,8 @@ public class LevelEndPopupService extends AbstractPopupService {
 
     public void buildPopupWindow(PopupResult popupResult) {
         Activity activity = popupResult.getActivity();
-        View popupView = activity.getLayoutInflater().inflate(R.layout.popup_end_level, popupResult.getCurrentView(), false);
+        ViewGroup currentView = (ViewGroup) activity.findViewById(android.R.id.content);
+        View popupView = activity.getLayoutInflater().inflate(R.layout.popup_end_level, currentView, false);
         popupResult.setPopupView(popupView);
 
         LevelData nextLevelsData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
@@ -205,7 +207,7 @@ public class LevelEndPopupService extends AbstractPopupService {
                     SoundEnum.CLICK1.getMediaPlayer().start();
                     popupResult.getPopupWindow().dismiss();
                     LevelData nextLevelData = starsAndUnlockService.getNextLevel(gameDataHolder.getLevelData());
-                    PopupResult levelInfoPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
+                    PopupResult levelInfoPopupResult = new PopupResult(popupResult.getActivity());
                     levelInfoPopupService.buildPopupWindow(levelInfoPopupResult, nextLevelData, true, true);
                 }
             });

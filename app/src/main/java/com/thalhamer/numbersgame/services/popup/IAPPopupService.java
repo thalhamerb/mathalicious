@@ -3,6 +3,7 @@ package com.thalhamer.numbersgame.services.popup;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -18,7 +19,6 @@ import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.enums.PowerEnum;
 import com.thalhamer.numbersgame.enums.sounds.SoundEnum;
 import com.thalhamer.numbersgame.services.InAppPurchaseService;
-import com.thalhamer.numbersgame.util.IabHelper;
 
 import java.util.List;
 
@@ -48,15 +48,12 @@ public class IAPPopupService extends AbstractPopupService {
         }
 
         //initialize layout
-        final RelativeLayout fullLayout = (RelativeLayout) activity.getLayoutInflater().inflate(R.layout.buy_power_full_store, popupResult.getCurrentView(), false);
+
+        final RelativeLayout fullLayout = (RelativeLayout) activity.getLayoutInflater()
+                .inflate(R.layout.buy_power_full_store, (ViewGroup) activity.findViewById(android.R.id.content), false);
         fullLayout.removeView(fullLayout.findViewById(R.id.samplePowerTab));
         fullLayout.removeView(fullLayout.findViewById(R.id.samplePowerImage));
         popupResult.setPopupView(fullLayout);
-
-        IabHelper mHelper = null;
-        if (activity instanceof LevelActivity) {
-            mHelper = ((LevelActivity) activity).getmHelper();
-        }
 
         List<IapPower> iapPowers = Lists.newArrayList();
         int firstTabImageMargin = App.getContext().getResources().getDimensionPixelSize(R.dimen.buy_power_tabImage1_left);
@@ -79,7 +76,7 @@ public class IAPPopupService extends AbstractPopupService {
             iapPowers.add(new IapPower(powerView, clickableTabImage, currentPowerEnum));
         }
 
-        inAppPurchaseService.setPowerBuyDetails(activity, mHelper, iapPowers);
+        inAppPurchaseService.setPowerBuyDetails(activity, popupResult.getmHelper(), iapPowers);
         final PopupWindow popupWindow = createPopupWindow(popupResult);
 
         final ImageButton cancelButton = (ImageButton) fullLayout.findViewById(R.id.cancel);
@@ -110,7 +107,8 @@ public class IAPPopupService extends AbstractPopupService {
     }
 
     private View createIapBuyView(PopupResult popupResult, PowerEnum powerEnum) {
-        final View powerView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.buy_power, popupResult.getCurrentView(), false);
+        ViewGroup contentView = (ViewGroup) popupResult.getActivity().findViewById(android.R.id.content);
+        final View powerView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.buy_power, contentView, false);
         powerView.setBackgroundResource(powerEnum.getTabImageId());
         ImageView powerImage = (ImageView) powerView.findViewById(R.id.powerImage);
         powerImage.setBackgroundResource(powerEnum.getImageResourceId());

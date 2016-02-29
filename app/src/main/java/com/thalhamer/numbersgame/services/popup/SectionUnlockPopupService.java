@@ -36,8 +36,7 @@ public class SectionUnlockPopupService extends AbstractPopupService {
 
     public void buildPopupWindow(PopupResult popupResult, SectionUnlock sectionUnlock) {
         Activity activity = popupResult.getActivity();
-        ViewGroup currentView = popupResult.getCurrentView();
-
+        ViewGroup currentView = (ViewGroup) activity.findViewById(android.R.id.content);
         final View popupView = activity.getLayoutInflater().inflate(R.layout.popup_unlocked_section, currentView, false);
         popupResult.setPopupView(popupView);
 
@@ -55,7 +54,7 @@ public class SectionUnlockPopupService extends AbstractPopupService {
             public void onClick(View v) {
                 SoundEnum.CLICK1.getMediaPlayer().start();
                 popupResult.getPopupWindow().dismiss();
-                PopupResult levelEndPopupResult = new PopupResult(popupResult.getActivity(), popupResult.getCurrentView());
+                PopupResult levelEndPopupResult = new PopupResult(popupResult.getActivity());
                 levelEndPopupService.buildPopupWindow(levelEndPopupResult);
             }
         });

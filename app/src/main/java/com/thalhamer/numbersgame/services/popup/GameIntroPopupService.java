@@ -1,6 +1,7 @@
 package com.thalhamer.numbersgame.services.popup;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
@@ -24,7 +25,8 @@ public class GameIntroPopupService extends AbstractPopupService {
     }
 
     public PopupWindow buildPopupWindow(PopupResult popupResult) {
-        View popupView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.popup_game_intro, popupResult.getCurrentView(), false);
+        ViewGroup contentView = (ViewGroup) popupResult.getActivity().findViewById(android.R.id.content);
+        View popupView = popupResult.getActivity().getLayoutInflater().inflate(R.layout.popup_game_intro, contentView, false);
         popupResult.setPopupView(popupView);
         final PopupWindow popupWindow = createPopupWindow(popupResult);
 
