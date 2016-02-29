@@ -123,11 +123,12 @@
 
     <!-- buy power layout -->
     <dimen name="buy_power_powerImage_sideLength">72dp</dimen>
-    <dimen name="buy_power_title_textSize">21sp</dimen>
+    <dimen name="buy_power_title_textSize">23sp</dimen>
     <dimen name="buy_power_title_margin_top">68dp</dimen>
     <dimen name="buy_power_marginTop">9dp</dimen>
     <dimen name="buy_power_desc_margin">13dp</dimen>
     <dimen name="buy_power_desc_marginBottom">17dp</dimen>
+    <dimen name="buy_power_desc_textSize">18sp</dimen>
     <dimen name="buy_power_buyImage_sideWidth">240dp</dimen>
     <dimen name="buy_power_buyImage_sideHeight">54dp</dimen>
     <dimen name="buy_power_padding_between_buttons">9dp</dimen>
