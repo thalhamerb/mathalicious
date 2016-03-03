@@ -123,6 +123,10 @@ public class SectionUnlockService {
     }
 
     public boolean isSectionUnlocked(LevelData levelData) {
+        if (levelData == null) {
+            return false;
+        }
+
         return isSectionUnlocked(levelData.getEpic(), levelData.getSection());
     }
 }
