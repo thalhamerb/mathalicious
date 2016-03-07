@@ -2,6 +2,7 @@ package com.thalhamer.numbersgame.services.popup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +92,7 @@ public class LevelEndPopupService extends AbstractPopupService {
         LinearLayout taskLayout = (LinearLayout) popupView.findViewById(R.id.otherTasks);
         taskLayout.removeAllViews();
         TextView extraTasksTitle = (TextView) popupView.findViewById(R.id.extraTasks);
-        extraTasksTitle.setVisibility(View.GONE);
+        extraTasksTitle.setVisibility(View.INVISIBLE);
 
         if (levelInfo.getGridTileData() != null) {
             Map<Object, String> extraTasks = gridTileDataService.getGridTileDataDescriptions(levelInfo.getGridTileData());
@@ -130,7 +131,8 @@ public class LevelEndPopupService extends AbstractPopupService {
         MessageType messageType = numOfStars > 1 ? MessageType.POSITIVE : MessageType.NEGATIVE;
         Character character = Character.getCharacterFromEpic(gameDataHolder.getLevelData().getEpic());
         ImageView characterImage = (ImageView) popupResult.getPopupView().findViewById(R.id.character);
-        characterImage.setImageBitmap(character.fullBodyBitmap());
+        Bitmap characterBitmap = numOfStars > 1 ? character.getHappyBitmap() : character.fullBodyBitmap();
+        characterImage.setImageBitmap(characterBitmap);
         String message;
         if (popupResult.isAllTasksCompleted()) {
             message = messageService.getRandomGameMessage(character, messageType, MessageLocation.AFTER_GAME);
