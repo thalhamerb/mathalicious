@@ -9,7 +9,6 @@ import com.thalhamer.numbersgame.R;
  */
 public enum GameExplanationExtras implements GameExplanation {
 
-    //TODO replace image id with permenant one
     POWER_CLEAR("Multiple Tile Clear - click and drag to an adjacent tile to clear all tiles of that number.  " +
             "Hint: the more tiles you clear, the more that fall into board.", R.drawable.explain_power);
 

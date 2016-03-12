@@ -42,6 +42,9 @@ public class SeedData_CharacterMessages {
         einsteinPosPhrases.add("Let this day be remembered as the day you got that score.");
         einsteinPosPhrases.add("If there was an Olympic event for this game, you would win gold.");
         einsteinPosPhrases.add("Nice! I'm going to put that score on my refrigerator.");
+        einsteinPosPhrases.add("I gave all my dead batteries away today free of charge...");
+        einsteinPosPhrases.add("What is the best thing about elevator jokes?  They work on so many levels.");
+        einsteinPosPhrases.add("What did Donald Duck say in his graduate physics class? Quark, quark, quark.");
 
         List<String> einsteinNegPhrases = Lists.newArrayList();
         einsteinNegPhrases.add("Neeeiiiinnnnn!! (Translation from German: Noooooo!!).");
@@ -68,6 +71,8 @@ public class SeedData_CharacterMessages {
         einsteinNegPhrases.add("Fun fact.  If you could stand at the edge of a black hole, you would be able to see the universe flash before your eyes.");
         einsteinNegPhrases.add("Fun fact.  In a vacuum, a feather and a hammer would fall at the same time.  An astronaut did it on the moon!");
         einsteinNegPhrases.add("Fun fact.  Sound doesn't travel through empty space.  This means the Star Wars spaceship explosions are just for fun!");
+        einsteinNegPhrases.add("What did one uranium-238 nucleus say to the other?  Gotta split!");
+        einsteinNegPhrases.add("Why can't you trust an atom?  They make up everything.");
 
         List<String> newtonPosPhrases = Lists.newArrayList();
         newtonPosPhrases.add("Keep that momentum going, or as I call it, my first law of motion.");
@@ -84,6 +89,7 @@ public class SeedData_CharacterMessages {
         newtonPosPhrases.add("You are a math rockstar!");
         newtonPosPhrases.add("Ohh yeaaa! I think you are ready for the multiply levels.");
         newtonPosPhrases.add("Someone call the fire department because you are setting this game on fire!");
+        newtonPosPhrases.add("Where does bad light end up?  In prism");
 
         List<String> newtonNegPhrases = Lists.newArrayList();
         newtonNegPhrases.add("You'll do better next time!");
@@ -103,6 +109,10 @@ public class SeedData_CharacterMessages {
         newtonNegPhrases.add("Fun fact.  As of right now, we can only account for 5% of the mass in the universe.  We'll get there...");
         newtonNegPhrases.add("Fun fact.  Light slows down when it passes through matter like glass or water.");
         newtonNegPhrases.add("Fun fact.  Light bends around massive objects like planets.");
+        newtonNegPhrases.add("Did you hear about the new restaurant on the moon?  The food is great, but there is just no atmosphere.");
+        newtonNegPhrases.add("Why is electricity so dangerous?  Because it doesn't know how to conduct itself properly.");
+        newtonNegPhrases.add("A rolling stone gathers momentum.");
+        newtonNegPhrases.add("Bodies in motion remain in motion, and bodies at rest stay in bed unless their mothers call them to get up.");
 
         List<String> galileoPosPhrases = Lists.newArrayList();
         galileoPosPhrases.add("That score is astronomical!");
