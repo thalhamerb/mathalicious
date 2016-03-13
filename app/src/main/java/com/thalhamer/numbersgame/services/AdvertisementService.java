@@ -20,38 +20,30 @@ public class AdvertisementService {
     }
 
     public void initAdBanner(AdView mAdView) {
-//        AdView mAdView = (AdView) findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
-        //TODO switch to code above when ready to deploy (no longer use test ones)
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
+//                .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")  // My test phone
+//                .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")
+//                .addTestDevice("AF2BE04100A2E6AA655D6095FBC108E5")
+//                .build();
 
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
-                .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")  // My test phone
-                .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")
-                .addTestDevice("AF2BE04100A2E6AA655D6095FBC108E5")
-                .build();
         mAdView.loadAd(adRequest);
     }
 
     public void initInterstitialAd() {
         if (App.getmInterstitialAd() == null) {
             App.setmInterstitialAd(new InterstitialAd(App.getContext()));
-            App.getmInterstitialAd().setAdUnitId(App.getContext().getResources().getString(R.string.banner_ad_unit_id));
+            App.getmInterstitialAd().setAdUnitId(App.getContext().getResources().getString(R.string.interstitial_ad_unit_id));
         }
     }
 
     public void requestNewInterstitialAd() {
         initInterstitialAd();
-        //TODO switch out test ones when ready to deploy
-        if (!App.getmInterstitialAd().isLoaded()) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)  // All emulators
-                    .addTestDevice("B14D1799161A1F2CD52AD9301DD68B37DE")
-                    .addTestDevice("D6431951621DB594FC023DCEFCEA6E44")  // My test phone
-                    .addTestDevice("AF2BE04100A2E6AA655D6095FBC108E5")
-                    .build();
+        if (!App.getmInterstitialAd().isLoading() && !App.getmInterstitialAd().isLoaded()) {
+            AdRequest adRequest = new AdRequest.Builder().build();
 
             App.getmInterstitialAd().loadAd(adRequest);
         }
