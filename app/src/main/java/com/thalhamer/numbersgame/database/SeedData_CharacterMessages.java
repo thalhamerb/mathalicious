@@ -43,7 +43,7 @@ public class SeedData_CharacterMessages {
         einsteinPosPhrases.add("If there was an Olympic event for this game, you would win gold.");
         einsteinPosPhrases.add("Nice! I'm going to put that score on my refrigerator.");
         einsteinPosPhrases.add("I gave all my dead batteries away today free of charge...");
-        einsteinPosPhrases.add("What is the best thing about elevator jokes?  They work on so many levels.");
+        einsteinPosPhrases.add("You know what the best thing about elevator jokes is?  They work on so many levels.");
         einsteinPosPhrases.add("What did Donald Duck say in his graduate physics class? Quark, quark, quark.");
 
         List<String> einsteinNegPhrases = Lists.newArrayList();
@@ -110,7 +110,7 @@ public class SeedData_CharacterMessages {
         newtonNegPhrases.add("Fun fact.  Light slows down when it passes through matter like glass or water.");
         newtonNegPhrases.add("Fun fact.  Light bends around massive objects like planets.");
         newtonNegPhrases.add("Did you hear about the new restaurant on the moon?  The food is great, but there is just no atmosphere.");
-        newtonNegPhrases.add("Why is electricity so dangerous?  Because it doesn't know how to conduct itself properly.");
+        newtonNegPhrases.add("You know why electricity is so dangerous?  Because it doesn't know how to conduct itself properly.");
         newtonNegPhrases.add("A rolling stone gathers momentum.");
         newtonNegPhrases.add("Bodies in motion remain in motion, and bodies at rest stay in bed unless their mothers call them to get up.");
 

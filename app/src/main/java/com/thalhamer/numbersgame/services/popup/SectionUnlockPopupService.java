@@ -1,16 +1,14 @@
 package com.thalhamer.numbersgame.services.popup;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.thalhamer.numbersgame.Factory.App;
 import com.thalhamer.numbersgame.R;
 import com.thalhamer.numbersgame.domain.PopupResult;
 import com.thalhamer.numbersgame.domain.Power;
@@ -62,23 +60,26 @@ public class SectionUnlockPopupService extends AbstractPopupService {
 
     private void setPowersEarned(PopupResult popupResult, SectionUnlock sectionUnlock) {
         Activity activity = popupResult.getActivity();
+        //hide all views so can unhide ones you want to show
         GridLayout gridLayout = (GridLayout) popupResult.getPopupView().findViewById(R.id.powerGrid);
-        gridLayout.removeAllViews();
+        int count = gridLayout.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = gridLayout.getChildAt(i);
+            child.setVisibility(View.GONE);
+        }
+        //show unlocked powers
         for (Power power : sectionUnlock.getPowers()) {
-            ImageView imageView = new ImageView(activity.getBaseContext());
-            int imageLength = activity.getResources().getDimensionPixelSize(R.dimen.unlocked_screen_gridImage_sideLength);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(imageLength, imageLength);
-            imageView.setLayoutParams(lp);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setBackgroundResource(power.getPowerEnum().getImageResourceId());
-            gridLayout.addView(imageView);
+            String powerEnumName = power.getPowerEnum().toString();
 
-            TextView numOfPowers = new TextView(activity.getBaseContext());
-            int powerTextSize = (int) (activity.getResources().getDimension(R.dimen.unlocked_screen_power_textSize) / activity.getResources().getDisplayMetrics().density);
-            numOfPowers.setTextSize(TypedValue.COMPLEX_UNIT_SP, powerTextSize);
-            numOfPowers.setText(String.format("%s%d", " x", power.getQuantity()));
-            numOfPowers.setTextColor(Color.WHITE);
-            gridLayout.addView(numOfPowers);
+            int imageId = App.getContext().getResources().getIdentifier(powerEnumName + "_image", "id", App.getContext().getPackageName());
+            ImageView imageView = (ImageView) popupResult.getPopupView().findViewById(imageId);
+            imageView.setVisibility(View.VISIBLE);
+
+            int textId = App.getContext().getResources().getIdentifier(powerEnumName + "_qty", "id", App.getContext().getPackageName());
+            TextView textView = (TextView) popupResult.getPopupView().findViewById(textId);
+            String quantityText = String.format(" x%d", power.getQuantity());
+            textView.setText(quantityText);
+            textView.setVisibility(View.VISIBLE);
         }
     }
 

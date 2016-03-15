@@ -22,11 +22,11 @@ public class Version1 {
 
     private static void sectionUnlockInserts(SQLiteDatabase db) {
         SeedDataHelper.performSectionUnlockInserts(db, 1, 1, 0, null, 1);
-        SeedDataHelper.performSectionUnlockInserts(db, 1, 2, 24, "CLEAR_ONE_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 1, 3, 48, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 2, 1, 72, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 2, 2, 95, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
-        SeedDataHelper.performSectionUnlockInserts(db, 2, 3, 119, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-3", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 2, 24, "CLEAR_ONE_NUM-1,CLEAR_ALL_NUM-1,PAUSE_TIME-1", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 1, 3, 48, "CLEAR_ONE_NUM-2,CLEAR_ALL_NUM-1,PAUSE_TIME-1", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 1, 72, "CLEAR_ONE_NUM-2,CLEAR_ALL_NUM-1,PAUSE_TIME-1", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 2, 95, "CLEAR_ALL_NUM-1,PAUSE_TIME-1", 0);
+        SeedDataHelper.performSectionUnlockInserts(db, 2, 3, 119, "CLEAR_ONE_NUM-1,PAUSE_TIME-1", 0);
     }
 
 }
