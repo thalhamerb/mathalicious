@@ -43,7 +43,7 @@ public class SeedData_CharacterMessages {
         einsteinPosPhrases.add("If there was an Olympic event for this game, you would win gold.");
         einsteinPosPhrases.add("Nice! I'm going to put that score on my refrigerator.");
         einsteinPosPhrases.add("I gave all my dead batteries away today free of charge...");
-        einsteinPosPhrases.add("You know what the best thing about elevator jokes is?  They work on so many levels.");
+        einsteinPosPhrases.add("Do you know what the best thing about elevator jokes is?  They work on so many levels.");
         einsteinPosPhrases.add("What did Donald Duck say in his graduate physics class? Quark, quark, quark.");
 
         List<String> einsteinNegPhrases = Lists.newArrayList();
@@ -65,12 +65,12 @@ public class SeedData_CharacterMessages {
         einsteinNegPhrases.add("Pony and bologna rhyme. Is your mind blown?");
         einsteinNegPhrases.add("This level brought to you by the greek letter omega.");
         einsteinNegPhrases.add("The universe is expanding and so are your math skills!");
-        einsteinNegPhrases.add("Fun fact.  At the center of every solar system is a black hole.");
-        einsteinNegPhrases.add("Fun fact.  When we are not looking at matter, it acts as a wave.");
-        einsteinNegPhrases.add("Fun fact.  The faster you move, the more mass you have.  You only notice when approaching the speed of light.");
-        einsteinNegPhrases.add("Fun fact.  If you could stand at the edge of a black hole, you would be able to see the universe flash before your eyes.");
-        einsteinNegPhrases.add("Fun fact.  In a vacuum, a feather and a hammer would fall at the same time.  An astronaut did it on the moon!");
-        einsteinNegPhrases.add("Fun fact.  Sound doesn't travel through empty space.  This means the Star Wars spaceship explosions are just for fun!");
+        einsteinNegPhrases.add("Fun fact: At the center of every solar system is a black hole.");
+        einsteinNegPhrases.add("Fun fact: When we are not looking at matter, it acts as a wave.");
+        einsteinNegPhrases.add("Fun fact: The faster you move, the more mass you have.  You only notice when approaching the speed of light.");
+        einsteinNegPhrases.add("Fun fact: If you could stand at the edge of a black hole, you would be able to see the universe flash before your eyes.");
+        einsteinNegPhrases.add("Fun fact: In a vacuum, a feather and a hammer would fall at the same time.  An astronaut did it on the moon!");
+        einsteinNegPhrases.add("Fun fact: Sound doesn't travel through empty space.  This means the Star Wars spaceship explosions are just for fun!");
         einsteinNegPhrases.add("What did one uranium-238 nucleus say to the other?  Gotta split!");
         einsteinNegPhrases.add("Why can't you trust an atom?  They make up everything.");
 
@@ -89,7 +89,7 @@ public class SeedData_CharacterMessages {
         newtonPosPhrases.add("You are a math rockstar!");
         newtonPosPhrases.add("Ohh yeaaa! I think you are ready for the multiply levels.");
         newtonPosPhrases.add("Someone call the fire department because you are setting this game on fire!");
-        newtonPosPhrases.add("Where does bad light end up?  In prism");
+        newtonPosPhrases.add("Where does bad light end up?  In prism.");
 
         List<String> newtonNegPhrases = Lists.newArrayList();
         newtonNegPhrases.add("You'll do better next time!");
@@ -106,9 +106,9 @@ public class SeedData_CharacterMessages {
         newtonNegPhrases.add("There is no such thing as instant success.");
         newtonNegPhrases.add("My dog once set my laboratory on fire, ruining 20 years of research.");
         newtonNegPhrases.add("I'm all out of heartfelt and inspiring comments.");
-        newtonNegPhrases.add("Fun fact.  As of right now, we can only account for 5% of the mass in the universe.  We'll get there...");
-        newtonNegPhrases.add("Fun fact.  Light slows down when it passes through matter like glass or water.");
-        newtonNegPhrases.add("Fun fact.  Light bends around massive objects like planets.");
+        newtonNegPhrases.add("Fun fact: As of right now, we can only account for 5% of the mass in the universe.  We'll get there...");
+        newtonNegPhrases.add("Fun fact: Light slows down when it passes through matter like glass or water.");
+        newtonNegPhrases.add("Fun fact: Light bends around massive objects like planets.");
         newtonNegPhrases.add("Did you hear about the new restaurant on the moon?  The food is great, but there is just no atmosphere.");
         newtonNegPhrases.add("You know why electricity is so dangerous?  Because it doesn't know how to conduct itself properly.");
         newtonNegPhrases.add("A rolling stone gathers momentum.");
