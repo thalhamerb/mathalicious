@@ -7,7 +7,7 @@ import com.thalhamer.numbersgame.R;
  *
  * Created by Brian on 12/19/2015.
  */
-public enum GameExplanationExtras implements GameExplanation {
+public enum LevelExplanationExtras implements LevelExplanation {
 
     POWER_CLEAR("Multiple Tile Clear - click and drag to an adjacent tile to clear all tiles of that number.  " +
             "Hint: the more tiles you clear, the more that fall into board.", R.drawable.explain_power);
@@ -16,7 +16,7 @@ public enum GameExplanationExtras implements GameExplanation {
     private int explanationId;
     private String gameExplanationTitle;
 
-    GameExplanationExtras(String description, int explanationId) {
+    LevelExplanationExtras(String description, int explanationId) {
         this.description = description;
         this.explanationId = explanationId;
         this.gameExplanationTitle = "Specials";
