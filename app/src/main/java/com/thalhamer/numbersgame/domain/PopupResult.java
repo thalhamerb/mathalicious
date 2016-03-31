@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import com.thalhamer.numbersgame.services.TimerService;
 import com.thalhamer.numbersgame.util.IabHelper;
 
 /**
@@ -24,6 +25,7 @@ public class PopupResult {
     private LevelData nextLevelData;
     private boolean allTasksCompleted = true;
     private IabHelper mHelper;
+    private TimerService timerService;
 
     public PopupResult(Activity activity) {
         this.activity = activity;
@@ -83,5 +85,13 @@ public class PopupResult {
 
     public void setmHelper(IabHelper mHelper) {
         this.mHelper = mHelper;
+    }
+
+    public TimerService getTimerService() {
+        return timerService;
+    }
+
+    public void setTimerService(TimerService timerService) {
+        this.timerService = timerService;
     }
 }

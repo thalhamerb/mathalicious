@@ -90,6 +90,8 @@ public class ExplanationPopupService extends AbstractPopupService {
                             gameDataHolder.setPopupScreenOpen(false);
                             TouchStateHolder.setTouchState(GridData.TouchState.ENABLED);
                             gameDataHolder.getLevelActivity().startGame();
+                        } else if (popupResult.getTimerService() != null) {
+                            popupResult.getTimerService().startTimersAndHandlerCallbacks();
                         }
                     }
                 });
