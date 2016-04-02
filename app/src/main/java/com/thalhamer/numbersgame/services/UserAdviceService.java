@@ -52,8 +52,10 @@ public class UserAdviceService {
             numOfMovesWithoutUsingPowerTile = 0;
         }
 
-        if (tiles.size() <= MIN_LARGE_SEQUENCE_QUANTITY) {
+        if (tiles.size() < MIN_LARGE_SEQUENCE_QUANTITY) {
             numOfMovesWithoutLargeSequence++;
+        } else {
+            numOfMovesWithoutLargeSequence = 0;
         }
     }
 
