@@ -28,10 +28,13 @@
     <dimen name="button_border_width">2dp</dimen>
     <dimen name="button_round_radius">23dp</dimen>
 
-    <dimen name="single_button_height">60dp</dimen>
+    <dimen name="single_button_height">52dp</dimen>
     <dimen name="single_button_width">190dp</dimen>
-    <dimen name="single_button_marginBottom">18dp</dimen>
+    <dimen name="single_button_marginBottom">12dp</dimen>
     <dimen name="single_button_textSize">18sp</dimen>
+
+    <dimen name="icon_buttonSize">36sp</dimen>
+    <dimen name="icon_textSize">25dp</dimen>
 
     <dimen name="title_textSize">26sp</dimen>
     <dimen name="title_marginTop">16dp</dimen>
@@ -44,7 +47,7 @@
     <!-- opening screen -->
     <dimen name="opening_logo_sideLength">190dp</dimen>
     <dimen name="opening_logo_marginTop">50dp</dimen>
-    <dimen name="opening_start_marginTop">34dp</dimen>
+    <dimen name="opening_start_marginTop">24dp</dimen>
     <dimen name="game_intro_image_side">54dp</dimen>
     <dimen name="game_intro_description_size">16sp</dimen>
     <dimen name="game_intro_description_margin">12dp</dimen>

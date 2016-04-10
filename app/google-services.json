@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "project_id": "mathalicious-1f082",
+    "project_number": "824957020071",
+    "name": "Mathalicious"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824957020071:android:972c2ad9a536adb1",
+        "client_id": "android:com.thalhamer.numbersgame",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.thalhamer.numbersgame",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824957020071-mh3egvkcb3rtbire1ldu78fm3ihf5ksa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thalhamer.numbersgame",
+            "certificate_hash": "E6206CF8F16D8B12F63119A7CF7FA13033E7F754"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
