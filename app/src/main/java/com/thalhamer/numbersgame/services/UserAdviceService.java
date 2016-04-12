@@ -1,5 +1,11 @@
 package com.thalhamer.numbersgame.services;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+
 import com.thalhamer.numbersgame.domain.GameDataHolder;
 import com.thalhamer.numbersgame.domain.Tile;
 import com.thalhamer.numbersgame.enums.GameType;
@@ -18,6 +24,8 @@ public class UserAdviceService {
     private static final int MAX_MOVES_WITHOUT_USING_TILES = 6;
     private static final int MAX_MOVES_WITHOUT_LARGE_SEQUENCE = 4;
     private static final int MIN_LARGE_SEQUENCE_QUANTITY = 5;
+    public static final String RATED = "Rated_";
+    public static final String DONE = "Done";
 
     private int numOfMovesWithoutUsingPowerTile = 0;
     private int numOfMovesWithoutLargeSequence = 0;
@@ -26,9 +34,10 @@ public class UserAdviceService {
     GameDataHolder gameDataHolder;
     @Inject
     MessageService messageService;
-
     @Inject
     GridService gridService;
+    @Inject
+    SavedDataService savedDataService;
 
     @Inject
     UserAdviceService() {
@@ -76,5 +85,43 @@ public class UserAdviceService {
         numOfMovesWithoutUsingPowerTile = 0;
     }
 
+    public boolean shouldAskForRating(int epic, int section) {
+        boolean isSectionToAsk = (epic == 1 && section == 3) || (epic == 2 && section <= 2);
+        boolean alreadyAskedForSection = savedDataService.containsKey(RATED + epic + section);
+        boolean hasRated = savedDataService.containsKey(RATED + DONE);
+        return isSectionToAsk && !alreadyAskedForSection && !hasRated;
+    }
+
+    public void createRateModal(final Activity activity, int epic, int section) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+        alertDialogBuilder
+                .setMessage("Enjoying the game? Einstein would like you to rate the app if you haven't already!")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        String url = "https://play.google.com/store/apps/details?id=com.thalhamer.numbersgame&hl=en";
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        activity.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Not Now", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setNeutralButton("Already did!", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        savedDataService.saveKey(RATED + DONE, 1);
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+        savedDataService.saveKey(RATED + epic + section, 1);
+
+    }
 
 }
